@@ -5,7 +5,7 @@ use yii\helpers\Html;
 <a href="index.php?r=my/test">ไป test แบบเดิม</a>
 <br>
 <?php
-echo Html::a("ไป test แบบ yii", ['my/test','id'=>'001']);
+echo Html::a("ไป test แบบ yii", ['my/test','id'=>'001','name'=>'อุเทน']);
 
 echo "<br>";
 

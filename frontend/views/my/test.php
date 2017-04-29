@@ -11,4 +11,5 @@ echo $id;
 <?php
 $id = \Yii::$app->request->get('id');
 echo $id;
+echo $name;
 ?>
