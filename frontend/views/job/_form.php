@@ -26,7 +26,7 @@ use kartik\widgets\Select2;
                 $items = ArrayHelper::map($dtype,'id', 'name');
             ?>
             
-            <?php
+        <?php
             echo $form->field($model, 'device_type')->widget(Select2::classname(), [
             'data' => $items,
             'language' => 'th',
