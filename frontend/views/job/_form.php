@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Job */
@@ -28,8 +29,18 @@ use yii\widgets\ActiveForm;
     </div>    
 
     
-
-    <?= $form->field($model, 'date_recept')->textInput() ?>
+    <?php
+        echo $form->field($model, 'date_recept')->widget(DatePicker::classname(), [
+            'options' => ['placeholder' => 'ปปปป-ดด-วว'],
+            'pickerButton' => [
+                'icon' => 'ok',
+            ],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]);
+        ?>
 
     <?= $form->field($model, 'job_rapid')->textInput(['maxlength' => true]) ?>
 
