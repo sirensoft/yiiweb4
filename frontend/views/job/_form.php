@@ -12,11 +12,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'date_add')->textInput() ?>
+    <div class="form-group">
+        <div class="col-md-4 ">
 
-    <?= $form->field($model, 'device_type')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'date_add')->textInput() ?>
+        </div>
+        <div class="col-md-4 ">
+            <?= $form->field($model, 'device_type')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'device_sn')->textInput(['maxlength' => true]) ?>
+        <div class="col-md-4">
+            <?= $form->field($model, 'device_sn')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'customer')->textInput(['maxlength' => true]) ?>
 
