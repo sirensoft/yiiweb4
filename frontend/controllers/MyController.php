@@ -6,6 +6,8 @@ class MyController extends \yii\web\Controller
 {
     public function actionIndex()
     {
+        \Yii::$app->db->open();
+        
         return $this->render('index');
     }
     
