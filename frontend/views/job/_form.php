@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use frontend\models\CDeviceType;
 use yii\helpers\ArrayHelper;
+use kartik\widgets\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Job */
@@ -24,7 +25,18 @@ use yii\helpers\ArrayHelper;
                 $dtype = CDeviceType::find()->all();                
                 $items = ArrayHelper::map($dtype,'id', 'name');
             ?>
-            <?= $form->field($model, 'device_type')->dropDownList($items,['prompt'=>'--เลือก--']) ?>
+            
+            <?php
+            echo $form->field($model, 'device_type')->widget(Select2::classname(), [
+            'data' => $items,
+            'language' => 'th',
+            'options' => ['placeholder' => 'เลือก ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
+        ?>
+          
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'device_sn')->textInput(['maxlength' => true]) ?>
