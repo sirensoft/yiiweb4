@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
+use frontend\models\CDeviceType;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Job */
@@ -18,7 +20,11 @@ use kartik\date\DatePicker;
             <?= $form->field($model, 'date_add')->textInput(['disabled' => TRUE]) ?>
         </div>
         <div class="col-md-3">
-            <?= $form->field($model, 'device_type')->textInput(['maxlength' => true]) ?>
+            <?php
+                $dtype = CDeviceType::find()->all();                
+                $items = ArrayHelper::map($dtype,'id', 'name');
+            ?>
+            <?= $form->field($model, 'device_type')->dropDownList($items,['prompt'=>'--เลือก--']) ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'device_sn')->textInput(['maxlength' => true]) ?>
