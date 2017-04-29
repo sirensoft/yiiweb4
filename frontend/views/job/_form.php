@@ -13,8 +13,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
 
-
-    <?= $form->field($model, 'date_add')->textInput() ?>
+    <?= $form->field($model, 'date_add')->textInput(['disabled'=>TRUE]) ?>
 
     <?= $form->field($model, 'device_type')->textInput(['maxlength' => true]) ?>
 

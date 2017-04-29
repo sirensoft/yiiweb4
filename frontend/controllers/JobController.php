@@ -64,6 +64,7 @@ class JobController extends Controller
     public function actionCreate()
     {
         $model = new Job();
+        $model->date_add = date("Y-m-d");
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
