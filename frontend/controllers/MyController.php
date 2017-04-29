@@ -9,11 +9,13 @@ class MyController extends \yii\web\Controller
         return $this->render('index');
     }
     
-    public function actionTest($id,$name){
+    public function actionTest($id,$name,$lname=null){
         
        return $this->render('test',[
            'id'=>$id,
-           'name'=>$name
+           'name'=>$name,
+           'lname'=>$lname
+           
        ]);
        
     }

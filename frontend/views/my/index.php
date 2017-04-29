@@ -1,4 +1,5 @@
 <?php
+$this->title = " xxxxx ";
 
 use yii\helpers\Html;
 ?>
@@ -9,7 +10,8 @@ use yii\helpers\Html;
 echo Html::a('<i class="glyphicon glyphicon-ok"></i>', [
     'my/test',
     'id' => '001',
-    'name' => 'อุเทน'
+    'name' => 'อุเทน',
+    'lname'=>'นามสกุล'
 ],['class'=>'btn btn-success btn-lg']);  // warning,success , primary ,danger ,info
 
 echo "<br>";
