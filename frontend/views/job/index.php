@@ -17,6 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('แจ้งซ่อม', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
+        'panel'=>[
+            'before'=>'รายการแจ้งซ่อม'
+        ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -30,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_recept',
             'job_rapid',
             'job_status',
-            // 'date_end',
+            'date_end',
             // 'job_note:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
