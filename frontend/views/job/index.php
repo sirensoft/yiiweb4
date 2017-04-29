@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\JobSearch */
@@ -21,14 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'date_add',
             'device_type',
             'device_sn',
             'customer',
-            // 'date_recept',
-            // 'job_rapid',
-            // 'job_status',
+            'date_recept',
+            'job_rapid',
+            'job_status',
             // 'date_end',
             // 'job_note:ntext',
 
