@@ -9,8 +9,12 @@ class MyController extends \yii\web\Controller
         return $this->render('index');
     }
     
-    public function actionTest(){
-       return $this->render('test');
+    public function actionTest($id){
+        
+       return $this->render('test',[
+           'id'=>$id
+       ]);
+       
     }
 
 }
