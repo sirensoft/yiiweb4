@@ -44,7 +44,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'device_sn',
             'customer',
             'date_recept',
-            'job_rapid',
+            //'job_rapid',
+            [
+                'attribute'=>'job_rapid',
+                'contentOptions' => function ($model) {
+                if ($model->job_rapid == 4) {
+                    return ['style' => "color:white;background-color:red;",'class' => 'text-center'];
+                }
+                return ['style' => "color:black;background-color:green;",'class' => 'text-center'];
+            },
+            ],
             'job_status',
             'date_end',
             // 'job_note:ntext',
