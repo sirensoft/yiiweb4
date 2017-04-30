@@ -1,6 +1,7 @@
 <?php
 
 namespace frontend\models;
+use frontend\models\CDeviceType;
 
 use Yii;
 
@@ -34,6 +35,7 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['customer','device_type'],'required','message' => ''],
             [['date_add', 'date_recept', 'date_end'], 'safe'],
             [['job_note'], 'string'],
             [['device_type', 'device_sn', 'customer', 'job_rapid', 'job_status'], 'string', 'max' => 255],
@@ -57,5 +59,9 @@ class Job extends \yii\db\ActiveRecord
             'date_end' => 'วันสิ้นสุด',
             'job_note' => 'หมายเหตุ',
         ];
+    }
+    
+    public function getDevicetype(){
+        return $this->hasOne(CDeviceType::className(), ['id'=>'device_type']);
     }
 }

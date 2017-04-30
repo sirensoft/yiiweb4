@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
+use frontend\models\CDeviceType;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\JobSearch */
@@ -27,7 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'date_add',
-            'device_type',
+            //'devicetype.name',
+            [
+                'attribute'=>'device_type',
+                'value'=>function($model){
+                    $dt = CDeviceType::findOne($model->device_type);
+                    return $dt->name;
+                },
+                'filter'=> ArrayHelper::map(CDeviceType::find()->all(),'id','name')
+            ],
             'device_sn',
             'customer',
             'date_recept',
