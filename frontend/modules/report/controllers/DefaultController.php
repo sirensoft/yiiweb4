@@ -18,7 +18,10 @@ class DefaultController extends Controller {
         $sql = "select * from job";
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();
         $dataProvider = new ArrayDataProvider([
-            'allModels' => $raw
+            'allModels' => $raw,
+            'pagination'=>[
+                'pageSize'=>3
+            ]
         ]);
 
         return $this->render('report1', [
