@@ -10,6 +10,9 @@ return [
     'modules' => [
         'gridview' => [
             'class' => '\kartik\grid\Module'
-        ]
+        ],
+        'report' => [
+            'class' => 'frontend\modules\report\Report',
+        ],
     ]
 ];
