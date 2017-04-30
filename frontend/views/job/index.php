@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'job_rapid',
             [
                 'attribute'=>'job_rapid',
+                'label'=>'',
                 'contentOptions' => function ($model) {
                 if ($model->job_rapid == 4) {
                     return ['style' => "color:white;background-color:red;",'class' => 'text-center'];

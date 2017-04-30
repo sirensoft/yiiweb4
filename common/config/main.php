@@ -14,5 +14,8 @@ return [
         'report' => [
             'class' => 'frontend\modules\report\Report',
         ],
+        'map' => [
+            'class' => 'frontend\modules\map\Map',
+        ],
     ]
 ];
