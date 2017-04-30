@@ -5,14 +5,15 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\Job;
 use frontend\models\JobSearch;
-use yii\web\Controller;
+//use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\controllers\AppController;
 
 /**
  * JobController implements the CRUD actions for Job model.
  */
-class JobController extends Controller
+class JobController extends AppController
 {
     /**
      * @inheritdoc
@@ -35,6 +36,7 @@ class JobController extends Controller
      */
     public function actionIndex()
     {
+        $this->permitRole([2,3,4]);
         $searchModel = new JobSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -83,6 +85,7 @@ class JobController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->permitRole([1]);
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
