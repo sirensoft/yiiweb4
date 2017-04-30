@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('แจ้งซ่อม', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
+        'responsiveWrap'=>FALSE,
         'pjax'=>TRUE,
         'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => '-'],
         'panel'=>[
