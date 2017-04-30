@@ -17,7 +17,9 @@ class DefaultController extends Controller {
 
     public function actionReport1() {
   
-        $sql = "select * from job";
+        $sql = "SELECT c.`name` ,COUNT(t.id) total FROM job t
+LEFT JOIN c_device_type c  on c.id = t.device_type
+GROUP BY c.id";
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();
         $dataProvider = new ArrayDataProvider([
             'allModels' => $raw,
