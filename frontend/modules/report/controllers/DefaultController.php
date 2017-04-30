@@ -20,6 +20,7 @@ class DefaultController extends Controller {
         $sql = "SELECT c.`name` ,COUNT(t.id) total FROM job t
 LEFT JOIN c_device_type c  on c.id = t.device_type
 GROUP BY c.id";
+        
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();
         $dataProvider = new ArrayDataProvider([
             'allModels' => $raw,
@@ -29,7 +30,8 @@ GROUP BY c.id";
         ]);
 
         return $this->render('report1', [
-                    'dataProvider' => $dataProvider
+                    'dataProvider' => $dataProvider,
+                    'raw'=>$raw
         ]);
     }
 
