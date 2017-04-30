@@ -9,6 +9,7 @@ use frontend\models\JobSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\controllers\AppController;
+use frontend\models\CDeviceType;
 
 /**
  * JobController implements the CRUD actions for Job model.
@@ -69,7 +70,8 @@ class JobController extends AppController
         $model->date_add = date("Y-m-d");
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $msg = $model->customer."-แจ้ง";
+            $dt = CDeviceType::findOne($model->device_type);
+            $msg = $model->customer."-แจ้ง ".$dt->name;
             $this->sendLineNotify($msg);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
