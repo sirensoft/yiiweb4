@@ -25,7 +25,7 @@ class AppController extends Controller {
     
     public  function sendLineNotify($message = NULL) {
         $LINE_API = 'https://notify-api.line.me/api/notify';
-        $LINE_TOKEN = '......';
+        $LINE_TOKEN = 'zWCo2FP7Sk7KwXlVqW1iTCbqiw4NANusdpduIZATVaI';
         $queryData = ['message' => $message];
         $queryData = http_build_query($queryData, '', '&');
         $headerOptions = [

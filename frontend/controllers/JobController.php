@@ -36,7 +36,7 @@ class JobController extends AppController
      */
     public function actionIndex()
     {
-        $this->permitRole([2,3,4]);
+        //$this->permitRole([2,3,4]);
         $searchModel = new JobSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -69,6 +69,8 @@ class JobController extends AppController
         $model->date_add = date("Y-m-d");
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $msg = $model->customer."-แจ้ง";
+            $this->sendLineNotify($msg);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -89,6 +91,11 @@ class JobController extends AppController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $status = $model->job_status;
+            if($status==4){
+                $msg = $model->device_sn." \r\nเสร็จแล้ว";
+                $this->sendLineNotify($msg);
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
