@@ -5,6 +5,7 @@ namespace frontend\modules\report\controllers;
 use yii\web\Controller;
 use yii\data\ArrayDataProvider;
 
+
 /**
  * Default controller for the `report` module
  */
@@ -15,6 +16,7 @@ class DefaultController extends Controller {
     }
 
     public function actionReport1() {
+  
         $sql = "select * from job";
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();
         $dataProvider = new ArrayDataProvider([
