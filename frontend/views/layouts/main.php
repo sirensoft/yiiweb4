@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Com-Service',
+        'brandLabel' => 'Yii2 Phayao',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-custom navbar-fixed-top',
