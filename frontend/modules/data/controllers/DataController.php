@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use \yii\web\Response;
 use yii\helpers\Html;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 
 /**
  * DataController implements the CRUD actions for Data model.
@@ -24,6 +25,9 @@ class DataController extends Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'denyCallback' => function ($rule, $action) {
+                    throw new ForbiddenHttpException('ไม่อนุญาต!');
+                },
                 'only' => ['create', 'update', 'delete', 'bulk-delete', 'view'],
                 'rules' => [
                     [
@@ -32,14 +36,38 @@ class DataController extends Controller {
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['create', 'update', 'view'],
+                        'actions' => ['create',  'view'],
                         'allow' => TRUE,
                         'roles' => ['user'],
                     ],
                     [
-                        'actions' => ['delete', 'bulk-delete'],
-                        'allow' => TRUE,
+                        'allow' => true,
+                        'actions' => ['update'],
                         'roles' => ['user'],
+                        'matchCallback' => function($rule, $action) {
+                            $model = $this->findModel(\Yii::$app->request->get('id'));
+                            if (\Yii::$app->user->can('updateData', ['model' => $model])) {
+                                return true;
+                            }
+                        }
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => TRUE,
+                        'matchCallback' => function($rule, $action) {
+                            $model = $this->findModel(\Yii::$app->request->get('id'));
+                            if (\Yii::$app->user->can('updateData', ['model' => $model])) {
+                                return true;
+                            }
+                        },
+                        'roles' => ['user'],
+                        
+                    ],
+                     [
+                        'actions' => ['bulk-delete'],
+                        'allow' => TRUE,
+                        'roles' => ['admin'],
+                        
                     ],
                 ],
             ],
@@ -165,7 +193,7 @@ class DataController extends Controller {
              */
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($request->isGet) {
-                if (\Yii::$app->user->can('updateData', ['model' => $model])) {
+                
                     return [
                         'title' => "Update Data #" . $id,
                         'content' => $this->renderAjax('update', [
@@ -174,7 +202,7 @@ class DataController extends Controller {
                         'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
                         Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
                     ];
-                }
+                
                 return [
                     'title' => "Update Data #" . $id,
                     'content' => "ไม่อนุญาต",
@@ -225,9 +253,9 @@ class DataController extends Controller {
     public function actionDelete($id) {
         $request = Yii::$app->request;
         $model = $this->findModel($id);
-        if (\Yii::$app->user->can('updateData', ['model' => $model])) {
-            $model->delete();
-        }
+        
+        $model->delete();
+        
 
         if ($request->isAjax) {
             /*
