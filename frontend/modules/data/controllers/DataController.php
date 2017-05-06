@@ -32,14 +32,14 @@ class DataController extends Controller {
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['create','update', 'view'],
+                        'actions' => ['create', 'update', 'view'],
                         'allow' => TRUE,
-                        'roles' => ['user','admin'],
+                        'roles' => ['user'],
                     ],
                     [
                         'actions' => ['delete', 'bulk-delete'],
                         'allow' => TRUE,
-                        'roles' => ['admin'],
+                        'roles' => ['user'],
                     ],
                 ],
             ],
@@ -157,7 +157,7 @@ class DataController extends Controller {
     public function actionUpdate($id) {
         $request = Yii::$app->request;
         $model = $this->findModel($id);
-        
+
 
         if ($request->isAjax) {
             /*
@@ -176,11 +176,10 @@ class DataController extends Controller {
                     ];
                 }
                 return [
-                        'title' => "Update Data #" . $id,
-                        'content' => "ไม่อนุญาต",
-                        'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"])
-                    ];
-                
+                    'title' => "Update Data #" . $id,
+                    'content' => "ไม่อนุญาต",
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"])
+                ];
             } else if ($model->load($request->post()) && $model->save()) {
                 return [
                     'forceReload' => '#crud-datatable-pjax',
@@ -214,7 +213,6 @@ class DataController extends Controller {
                 ]);
             }
         }
-        
     }
 
     /**
@@ -226,7 +224,10 @@ class DataController extends Controller {
      */
     public function actionDelete($id) {
         $request = Yii::$app->request;
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if (\Yii::$app->user->can('updateData', ['model' => $model])) {
+            $model->delete();
+        }
 
         if ($request->isAjax) {
             /*
