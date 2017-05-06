@@ -26,7 +26,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup','about'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -37,6 +37,11 @@ class SiteController extends Controller
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                     [
+                        'actions' => ['about'],
+                        'allow' => TRUE,
+                        'roles' => ['user','admin'],
                     ],
                 ],
             ],
@@ -75,6 +80,7 @@ class SiteController extends Controller
         //return $this->render('index');
         return $this->redirect(['job/index']);
     }
+    
 
     /**
      * Logs in a user.

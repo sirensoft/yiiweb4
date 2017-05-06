@@ -6,8 +6,21 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
     ],
     'modules' => [
+        'rbac' => [
+            'class' => 'johnitvn\rbacplus\Module',
+            'userModelClassName' => null,
+            'userModelIdField' => 'id',
+            'userModelLoginField' => 'username',
+            'userModelLoginFieldLabel' => null,
+            'userModelExtraDataColumls' => null,
+            'beforeCreateController' => null,
+            'beforeAction' => null
+        ],
         'gridview' => [
             'class' => '\kartik\grid\Module'
         ],
@@ -16,6 +29,9 @@ return [
         ],
         'map' => [
             'class' => 'frontend\modules\map\Map',
+        ],
+        'data' => [
+            'class' => 'frontend\modules\data\Data',
         ],
     ]
 ];
