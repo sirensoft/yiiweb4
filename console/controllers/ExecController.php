@@ -11,6 +11,8 @@ class ExecController extends \yii\console\Controller {
      $user = $auth->getRole('user');
      $admin = $auth->getRole('admin');
      $auth->addChild($admin, $user);
+    
+     
   }
 
 }

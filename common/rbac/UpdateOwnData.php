@@ -11,7 +11,7 @@ class UpdateOwnData extends Rule
     {
         //return FALSE;
         if($user_id === 1){
-            return TRUE;
+           // return TRUE;
         }
         return $params['model']->owner == $user_id;
     }
