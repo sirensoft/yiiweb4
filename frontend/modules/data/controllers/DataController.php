@@ -28,12 +28,12 @@ class DataController extends Controller {
                 'denyCallback' => function ($rule, $action) {
                     throw new ForbiddenHttpException('ไม่อนุญาต!');
                 },
-                'only' => ['create', 'update', 'delete', 'bulk-delete', 'view'],
+                'only' => ['create', 'update', 'delete', 'bulk-delete', 'view','index'],
                 'rules' => [
                     [
                         'actions' => ['index'],
                         'allow' => TRUE,
-                        'roles' => ['?'],
+                        'roles' => ['user'],
                     ],
                     [
                         'actions' => ['create',  'view'],
