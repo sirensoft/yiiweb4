@@ -27,7 +27,7 @@ AppAsset::register($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => 'Yii2 Phayao',
+                'brandLabel' => '<i class="glyphicon glyphicon-heart-empty"></i>',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-custom navbar-fixed-top',
@@ -65,6 +65,11 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
                 'encodeLabels' => false,
+            ]);
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-left'],
+                'encodeLabels' => false,
+                'items' => [['label' => 'Yii2 Phayao']],
             ]);
             NavBar::end();
             ?>
