@@ -46,7 +46,7 @@ class DataController extends Controller {
                         'roles' => ['user'],
                         'matchCallback' => function($rule, $action) {
                             $model = $this->findModel(\Yii::$app->request->get('id'));
-                            if (\Yii::$app->user->can('updateData', ['model' => $model])) {
+                            if (\Yii::$app->user->can('updateOwn', ['model' => $model])) {
                                 return true;
                             }
                         }
