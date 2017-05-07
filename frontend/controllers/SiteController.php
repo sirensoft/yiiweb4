@@ -77,8 +77,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        //return $this->render('index');
-        return $this->redirect(['/data/data/index']);
+        return $this->render('index');
+        //return $this->redirect(['/data/data/index']);
     }
     
 
@@ -112,7 +112,7 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(['login']);
     }
 
     /**

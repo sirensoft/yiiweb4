@@ -24,12 +24,7 @@ return [
         'gridview' => [
             'class' => '\kartik\grid\Module'
         ],
-        'report' => [
-            'class' => 'frontend\modules\report\Report',
-        ],
-        'map' => [
-            'class' => 'frontend\modules\map\Map',
-        ],
+        
         'data' => [
             'class' => 'frontend\modules\data\Data',
         ],
