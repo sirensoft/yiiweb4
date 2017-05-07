@@ -57,7 +57,7 @@ AppAsset::register($this);
                         ['label' => 'เมนู 1', 'url' => '#'],
                         '<li class="divider"></li>',
                         '<li class="dropdown-header">menu header</li>',
-                        '<li tabindex="-1">' . Html::a('<i class="glyphicon glyphicon-off"></i> ออกจากระบบ', ['/site/logout'], ['data-method' => 'POST']) . '</li>'
+                        ['label' => '<span class="glyphicon glyphicon-off"></span> Logout','url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
                     ],
                 ];
             }
