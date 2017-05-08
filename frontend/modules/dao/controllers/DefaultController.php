@@ -3,6 +3,7 @@
 namespace frontend\modules\dao\controllers;
 
 use yii\web\Controller;
+use frontend\modules\dao\models\RptSearch;
 
 /**
  * Default controller for the `dao` module
@@ -15,6 +16,11 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new RptSearch();
+        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
     }
 }
