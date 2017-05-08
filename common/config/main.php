@@ -28,5 +28,8 @@ return [
         'data' => [
             'class' => 'frontend\modules\data\Data',
         ],
+        'orm' => [
+            'class' => 'frontend\modules\orm\Orm',
+        ],
     ]
 ];

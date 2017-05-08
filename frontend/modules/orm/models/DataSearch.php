@@ -1,11 +1,11 @@
 <?php
 
-namespace frontend\modules\data\models;
+namespace frontend\modules\orm\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\modules\data\models\Data;
+use frontend\modules\orm\models\Data;
 
 /**
  * DataSearch represents the model behind the search form about `frontend\models\Data`.
@@ -19,7 +19,7 @@ class DataSearch extends Data
     {
         return [
             [['id'], 'integer'],
-            [['val', 'owner'], 'safe'],
+            [['val', 'owner','d_update'], 'safe'],
         ];
     }
 
@@ -42,10 +42,12 @@ class DataSearch extends Data
     public function search($params)
     {
         $query = Data::find();
+        $query->joinWith('user');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        
 
         $this->load($params);
 
@@ -60,7 +62,9 @@ class DataSearch extends Data
         ]);
 
         $query->andFilterWhere(['like', 'val', $this->val])
-            ->andFilterWhere(['like', 'owner', $this->owner]);
+           // ->andFilterWhere(['like', 'owner', $this->owner])
+            ->andFilterWhere(['like', 'd_update', $this->d_update])
+            ->andFilterWhere(['like', 'user.username', $this->owner]);
 
         return $dataProvider;
     }

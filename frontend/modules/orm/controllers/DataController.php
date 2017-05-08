@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\modules\data\controllers;
+namespace frontend\modules\orm\controllers;
 
 use Yii;
-use frontend\modules\data\models\Data;
-use frontend\modules\data\models\DataSearch;
+use frontend\modules\orm\models\Data;
+use frontend\modules\orm\models\DataSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

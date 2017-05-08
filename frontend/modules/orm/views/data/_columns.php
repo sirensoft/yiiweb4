@@ -21,6 +21,11 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'owner',
+        'value'=>'user.username'
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'d_update',
     ],
     [
         'class' => 'kartik\grid\ActionColumn',

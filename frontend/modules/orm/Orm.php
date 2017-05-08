@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\modules\data;
+namespace frontend\modules\orm;
 
 /**
  * data module definition class
  */
-class Data extends \yii\base\Module
+class Orm extends \yii\base\Module
 {
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'frontend\modules\data\controllers';
+    public $controllerNamespace = 'frontend\modules\orm\controllers';
 
     /**
      * @inheritdoc
