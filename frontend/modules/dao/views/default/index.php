@@ -23,6 +23,7 @@ use yii\helpers\Url;
 </div>
 <?php
 echo GridView::widget([
+    'responsiveWrap'=>FALSE,
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => [
