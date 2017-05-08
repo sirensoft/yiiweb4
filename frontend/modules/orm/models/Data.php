@@ -50,11 +50,11 @@ class Data extends \yii\db\ActiveRecord {
     }
     
     public function behaviors() {
-        $behav[] = [
+        /*$behav[] = [
             'class' => BlameableBehavior::className(),
             'createdByAttribute' => 'owner',
             'updatedByAttribute' => 'owner',
-        ];
+        ];*/
         $behav[] = [
             'class' => TimestampBehavior::className(),
             'createdAtAttribute' => 'd_update',

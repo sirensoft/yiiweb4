@@ -9,6 +9,12 @@ use yii\data\ArrayDataProvider;
 class RptSearch extends Model {
 
     public $val, $owner; 
+    public $d_begin,$d_end;
+    
+    function __construct($begin,$end){ 
+        $this->d_begin = $begin;
+        $this->d_end=$end;
+    }
 
     public function attributeLabels() {
         return [
@@ -26,6 +32,9 @@ class RptSearch extends Model {
     public function search($params = null) {
         $sql = "select d.val,d.owner owner_id,u.username owner,d.d_update from data d ";
         $sql.= " left join user u on u.id=d.owner";
+        if($this->d_begin){
+            $sql.=" where d.d_update between '$this->d_begin 00:00:00' AND '$this->d_end 23:59:59' ";            
+        }
 
         $models = \Yii::$app->db->createCommand($sql)->queryAll();
         $query = new ArrayQuery();
