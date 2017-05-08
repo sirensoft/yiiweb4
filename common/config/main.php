@@ -23,13 +23,12 @@ return [
         ],
         'gridview' => [
             'class' => '\kartik\grid\Module'
-        ],
-        
-        'data' => [
-            'class' => 'frontend\modules\data\Data',
-        ],
+        ],        
         'orm' => [
             'class' => 'frontend\modules\orm\Orm',
+        ],
+        'dao' => [
+            'class' => 'frontend\modules\dao\Dao',
         ],
     ]
 ];
