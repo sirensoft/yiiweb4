@@ -20,7 +20,8 @@ echo GridView::widget([
         ],
         [
             'attribute'=>'d_update',
-            'format'=>'datetime'
+            'format'=>'datetime',
+            'width' => '60px',
         ]
         
     ],

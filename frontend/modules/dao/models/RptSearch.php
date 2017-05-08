@@ -24,7 +24,8 @@ class RptSearch extends Model {
     }
 
     public function search($params = null) {
-        $sql = "select d.val,d.owner owner_id,u.username owner,d.d_update from data d left join user u on u.id=d.owner";
+        $sql = "select d.val,d.owner owner_id,u.username owner,d.d_update from data d ";
+        $sql.= " left join user u on u.id=d.owner";
 
         $models = \Yii::$app->db->createCommand($sql)->queryAll();
         $query = new ArrayQuery();
