@@ -43,9 +43,9 @@ class Data extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'val' => 'Val',
-            'owner' => 'Owner',
-            'd_update'=>'DateUpdate'
+            'val' => 'ข้อมูล',
+            'owner' => 'เจ้าของ',
+            'd_update'=>'ล่าสุด'
         ];
     }
     
