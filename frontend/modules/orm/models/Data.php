@@ -24,27 +24,15 @@ class Data extends \yii\db\ActiveRecord {
     public static function tableName() {
         return 'data';
     }
-
-    public function behaviors() {
-        $behav[] = [
-            'class' => BlameableBehavior::className(),
-            'createdByAttribute' => 'owner',
-            'updatedByAttribute' => 'owner',
-        ];
-        $behav[] = [
-            'class' => TimestampBehavior::className(),
-            'createdAtAttribute' => 'd_update',
-            'updatedAtAttribute' => 'd_update',
-            'value' => new Expression('NOW()'),
-        ];
-        return $behav;
-    }
+    
 
     /**
      * @inheritdoc
      */
     public function rules() {
         return [
+            [['val'],'required'],
+            [['val'],'unique'],
             [['val', 'owner','d_update'], 'string', 'max' => 255],
         ];
     }
@@ -59,6 +47,21 @@ class Data extends \yii\db\ActiveRecord {
             'owner' => 'Owner',
             'd_update'=>'DateUpdate'
         ];
+    }
+    
+    public function behaviors() {
+        $behav[] = [
+            'class' => BlameableBehavior::className(),
+            'createdByAttribute' => 'owner',
+            'updatedByAttribute' => 'owner',
+        ];
+        $behav[] = [
+            'class' => TimestampBehavior::className(),
+            'createdAtAttribute' => 'd_update',
+            'updatedAtAttribute' => 'd_update',
+            'value' => new Expression('NOW()'),
+        ];
+        return $behav;
     }
 
     public function getUser() {
