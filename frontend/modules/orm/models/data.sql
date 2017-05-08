@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50548
 File Encoding         : 65001
 
-Date: 2017-05-08 09:28:23
+Date: 2017-05-08 14:04:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,8 +25,12 @@ CREATE TABLE `data` (
   `owner` varchar(255) DEFAULT NULL,
   `d_update` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of data
 -- ----------------------------
+INSERT INTO `data` VALUES ('1', 'กดหดหด', '3', '2017-04-26 09:34:29');
+INSERT INTO `data` VALUES ('2', 'pppp', '3', '2017-05-08 09:33:36');
+INSERT INTO `data` VALUES ('3', 'ลำไย', '1', '2017-05-08 13:54:09');
+INSERT INTO `data` VALUES ('4', 'มนแคน', '1', '2017-05-08 13:54:36');
