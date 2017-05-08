@@ -34,21 +34,19 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@frontend/views' => '@frontend/themes/adminlte'
-                ],
+        /* 'view' => [
+          'theme' => [
+          'pathMap' => [
+          '@frontend/views' => '@frontend/themes/adminlte'
+          ],
+          ],
+          ], */
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [                
             ],
-        ],*/
-    /*
-      'urlManager' => [
-      'enablePrettyUrl' => true,
-      'showScriptName' => false,
-      'rules' => [
-      ],
-      ],
-     */
+        ],
     ],
     'params' => $params,
 ];
