@@ -18,7 +18,10 @@ echo GridView::widget([
             'width'=>'160px',
             'filter'=> ArrayHelper::map(User::find()->all(),'username','username')
         ],
-        'd_update'
+        [
+            'attribute'=>'d_update',
+            'format'=>'datetime'
+        ]
         
     ],
 ]);
