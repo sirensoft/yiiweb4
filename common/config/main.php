@@ -31,5 +31,8 @@ return [
         'dao' => [
             'class' => 'frontend\modules\dao\Dao',
         ],
+        'gis' => [
+            'class' => 'frontend\modules\gis\Gis',
+        ],
     ]
 ];
