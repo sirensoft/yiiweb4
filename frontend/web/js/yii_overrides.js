@@ -4,8 +4,9 @@ yii.confirm = function (message, okCallback, cancelCallback) {
         //text: "Your will not be able to recover this imaginary file!",
         type: "warning",
         showCancelButton: true,
+        cancelButtonText: "No!",
         confirmButtonClass: "btn-danger",
-        confirmButtonText: "Delete!",
+        confirmButtonText: "Yes!",
         closeOnConfirm: false
     }, okCallback);
 };

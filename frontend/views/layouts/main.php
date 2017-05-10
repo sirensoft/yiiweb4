@@ -48,8 +48,8 @@ AppAsset::register($this);
                 ],
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => 'Signup', 'url' => ['/user/registration/register']];
+                $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
             } else {
                 $menuItems[] = [
                     'label' => '<span class="glyphicon glyphicon-user"></span> ' . \Yii::$app->user->identity->username,
@@ -57,7 +57,7 @@ AppAsset::register($this);
                         ['label' => 'เมนู 1', 'url' => '#'],
                         '<li class="divider"></li>',
                         '<li class="dropdown-header">menu header</li>',
-                        ['label' => '<span class="glyphicon glyphicon-off"></span> Logout','url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
+                        ['label' => '<span class="glyphicon glyphicon-off"></span> Logout','url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']],
                     ],
                 ];
             }

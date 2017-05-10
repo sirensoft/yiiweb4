@@ -2,7 +2,7 @@
 
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'language'=>'th',
+    'language' => 'th',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -10,6 +10,7 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        
     ],
     'modules' => [
         'rbac' => [
@@ -24,7 +25,14 @@ return [
         ],
         'gridview' => [
             'class' => '\kartik\grid\Module'
-        ],        
+        ],
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableUnconfirmedLogin' => FALSE,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin']
+        ],
         'orm' => [
             'class' => 'frontend\modules\orm\Orm',
         ],
