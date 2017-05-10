@@ -5,21 +5,23 @@ DAY-1
         - Routing , Links 
         - Model View Controller (MVC) ,
         - Gii
-        - Module
+        
     บ่าย   
-        - Form and Widget
+        - Form and Widget , Verify Code ,Upload File
         - GridView and Customize
         
 DAY-2
     เช้า
+        - USER and RBAC
+    บ่าย
+        - Module
         - Chart 
         - Excel Report Template
-        - Line notify
-    บ่าย
-        - GIS (Map)
+        - Line notify    
 
 DAY-3
     บ่าย
-        - USER and RBAC
+        - GIS (Map)
+    
        
     
