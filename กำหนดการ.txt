@@ -4,7 +4,8 @@ DAY-1
         - Array
         - Routing , Links 
         - Model View Controller (MVC) ,
-        - Gii
+        - Module
+        - Gii CRUD,AJAX-CRUD
         
     บ่าย   
         - Form and Widget , Verify Code ,Upload File
@@ -13,10 +14,10 @@ DAY-1
 DAY-2
     เช้า
         - USER and RBAC
-    บ่าย
-        - Module
+    บ่าย       
         - Chart 
         - Excel Report Template
+        - custom components
         - Line notify    
 
 DAY-3
