@@ -43,5 +43,6 @@ return [
         'gis' => [
             'class' => 'frontend\modules\gis\Gis',
         ],
+        
     ]
 ];

@@ -19,7 +19,7 @@ class DataSearch extends Data
     {
         return [
             [['id'], 'integer'],
-            [['val', 'owner','d_update'], 'safe'],
+            [['val', 'owner','d_update'], 'safe'],            
         ];
     }
 

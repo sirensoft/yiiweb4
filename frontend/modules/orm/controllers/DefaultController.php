@@ -13,8 +13,15 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex()
+       public function actions()
     {
-        return $this->render('index');
+        return [           
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                //'fixedVerifyCode' => '1234',
+            ],
+        ];
     }
+    
 }
