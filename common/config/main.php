@@ -29,6 +29,7 @@ return [
         'user' => [
             'class' => 'dektrium\user\Module',
             'enableUnconfirmedLogin' => FALSE,
+            'enableFlashMessages'=>FALSE,
             'confirmWithin' => 21600,
             'cost' => 12,
             'admins' => ['admin']
