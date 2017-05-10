@@ -15,6 +15,18 @@ return [
             'username' => 'sa',
             'password' => 'sa',
             'charset' => 'utf8',
-        ]
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => FALSE,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'cccc@gmail.com',
+                'password' => '',
+                'port' => '465',
+                'encryption' => 'ssl',
+            ],
+        ],
     ],
 ];

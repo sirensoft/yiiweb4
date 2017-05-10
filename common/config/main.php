@@ -30,6 +30,7 @@ return [
             'class' => 'dektrium\user\Module',
             'enableUnconfirmedLogin' => FALSE,
             'enableFlashMessages'=>FALSE,
+            'enableConfirmation' => true,
             'confirmWithin' => 21600,
             'cost' => 12,
             'admins' => ['admin']
@@ -42,6 +43,9 @@ return [
         ],
         'gis' => [
             'class' => 'frontend\modules\gis\Gis',
+        ],
+        'testbeta' => [
+            'class' => 'frontend\modules\testbeta\testbeta',
         ],
         
     ]
