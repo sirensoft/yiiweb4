@@ -10,7 +10,8 @@ DAY-1
     บ่าย   
         - Form and Widget , Verify Code ,Upload File
         - GridView and Customize
-        
+
+=======================================================     
 DAY-2
     เช้า
         - USER and RBAC
@@ -20,8 +21,9 @@ DAY-2
         - custom components
         - Line notify    
 
+======================================================= 
 DAY-3
-    บ่าย
+    เช้า
         - GIS (Map)
     
        
