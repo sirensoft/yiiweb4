@@ -22,7 +22,7 @@ return [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'cccc@gmail.com',
+                'username' => 'you@gmail.com',
                 'password' => '',
                 'port' => '465',
                 'encryption' => 'ssl',
