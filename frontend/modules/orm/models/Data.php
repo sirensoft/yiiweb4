@@ -22,27 +22,29 @@ class Data extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public $verifyCode;
-    
+    public $dataFile;
+
     public static function tableName() {
         return 'data';
     }
-    
 
     /**
      * @inheritdoc
      */
     public function rules() {
         return [
-            [['val'],'required'],
-            [['val'],'unique'],
-            [['val', 'owner','d_update'], 'string', 'max' => 255],
+            [['val'], 'required'],
+            [['val'], 'unique'],
+            [['val', 'owner', 'd_update'], 'string', 'max' => 255],
+            [['dataFile'], 'safe'],
             [
                 'verifyCode', 'captcha',
-                'captchaAction'=>'/orm/default/captcha',
+                'captchaAction' => '/orm/default/captcha',
                 'when' => function ($this) {
-                    return $this->isNewRecord;                    
+                    return $this->isNewRecord;
                 }
             ],
+            [['dataFile'], 'file', 'extensions' => 'png, jpg, doc'],
         ];
     }
 
@@ -54,17 +56,17 @@ class Data extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'val' => 'ข้อมูล',
             'owner' => 'เจ้าของ',
-            'd_update'=>'ล่าสุด',
+            'd_update' => 'ล่าสุด',
             'verifyCode' => 'รหัสป้องกัน',
         ];
     }
-    
+
     public function behaviors() {
-        /*$behav[] = [
-            'class' => BlameableBehavior::className(),
-            'createdByAttribute' => 'owner',
-            'updatedByAttribute' => 'owner',
-        ];*/
+        /* $behav[] = [
+          'class' => BlameableBehavior::className(),
+          'createdByAttribute' => 'owner',
+          'updatedByAttribute' => 'owner',
+          ]; */
         $behav[] = [
             'class' => TimestampBehavior::className(),
             'createdAtAttribute' => 'd_update',
@@ -76,6 +78,10 @@ class Data extends \yii\db\ActiveRecord {
 
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'owner']);
+    }
+
+    public function upload() {
+        $this->dataFile->saveAs('uploads/' . $this->dataFile->baseName . '.' . $this->dataFile->extension);
     }
 
 }

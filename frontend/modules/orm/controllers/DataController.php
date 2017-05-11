@@ -12,6 +12,7 @@ use \yii\web\Response;
 use yii\helpers\Html;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
+use yii\web\UploadedFile;
 
 /**
  * DataController implements the CRUD actions for Data model.
@@ -28,7 +29,7 @@ class DataController extends Controller {
                 'denyCallback' => function ($rule, $action) {
                     throw new ForbiddenHttpException('ไม่อนุญาต!');
                 },
-                'only' => ['create', 'update', 'delete', 'bulk-delete', 'view','index'],
+                'only' => ['create', 'update', 'delete', 'bulk-delete', 'view', 'index'],
                 'rules' => [
                     [
                         'actions' => ['index'],
@@ -36,7 +37,7 @@ class DataController extends Controller {
                         'roles' => ['user'],
                     ],
                     [
-                        'actions' => ['create',  'view'],
+                        'actions' => ['create', 'view'],
                         'allow' => TRUE,
                         'roles' => ['user'],
                     ],
@@ -45,29 +46,27 @@ class DataController extends Controller {
                         'actions' => ['update'],
                         'roles' => ['user'],
                         'matchCallback' => function($rule, $action) {
-                            $model = $this->findModel(\Yii::$app->request->get('id'));
-                            if (\Yii::$app->user->can('updateOwn', ['model' => $model])) {
-                                return true;
-                            }
-                        }
+                    $model = $this->findModel(\Yii::$app->request->get('id'));
+                    if (\Yii::$app->user->can('updateOwn', ['model' => $model])) {
+                        return true;
+                    }
+                }
                     ],
                     [
                         'actions' => ['delete'],
                         'allow' => TRUE,
                         'matchCallback' => function($rule, $action) {
-                            $model = $this->findModel(\Yii::$app->request->get('id'));
-                            if (\Yii::$app->user->can('updateData', ['model' => $model])) {
-                                return true;
-                            }
-                        },
+                    $model = $this->findModel(\Yii::$app->request->get('id'));
+                    if (\Yii::$app->user->can('updateData', ['model' => $model])) {
+                        return true;
+                    }
+                },
                         'roles' => ['user'],
-                        
                     ],
-                     [
+                    [
                         'actions' => ['bulk-delete'],
                         'allow' => TRUE,
                         'roles' => ['admin'],
-                        
                     ],
                 ],
             ],
@@ -128,6 +127,7 @@ class DataController extends Controller {
     public function actionCreate() {
         $request = Yii::$app->request;
         $model = new Data();
+        $model->owner = \Yii::$app->user->identity->id;
 
         if ($request->isAjax) {
             /*
@@ -136,7 +136,7 @@ class DataController extends Controller {
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($request->isGet) {
                 return [
-                    'title' => "Create new Data",
+                    'title' => "เพิ่มข้อมูล",
                     'content' => $this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -144,6 +144,8 @@ class DataController extends Controller {
                     Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
             } else if ($model->load($request->post()) && $model->save()) {
+                $model->dataFile = UploadedFile::getInstance($model, 'dataFile');
+                $model->upload();
                 return [
                     'forceReload' => '#crud-datatable-pjax',
                     'title' => "Create new Data",
@@ -166,6 +168,11 @@ class DataController extends Controller {
              *   Process for non-ajax request
              */
             if ($model->load($request->post()) && $model->save()) {
+
+                $model->dataFile = UploadedFile::getInstance($model, 'dataFile');
+                $model->upload();                
+
+                \Yii::$app->session->setFlash('success', "OK");
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('create', [
@@ -193,16 +200,16 @@ class DataController extends Controller {
              */
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($request->isGet) {
-                
-                    return [
-                        'title' => "Update Data #" . $id,
-                        'content' => $this->renderAjax('update', [
-                            'model' => $model,
-                        ]),
-                        'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
-                        Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
-                    ];
-                
+
+                return [
+                    'title' => "Update Data #" . $id,
+                    'content' => $this->renderAjax('update', [
+                        'model' => $model,
+                    ]),
+                    'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"]) .
+                    Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
+                ];
+
                 return [
                     'title' => "Update Data #" . $id,
                     'content' => "ไม่อนุญาต",
@@ -253,9 +260,9 @@ class DataController extends Controller {
     public function actionDelete($id) {
         $request = Yii::$app->request;
         $model = $this->findModel($id);
-        
+
         $model->delete();
-        
+
 
         if ($request->isAjax) {
             /*

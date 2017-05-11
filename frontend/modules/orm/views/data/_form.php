@@ -20,8 +20,10 @@ use yii\captcha\Captcha;
     <?php
     $arrays = User::find()->all();
     $items = ArrayHelper::map($arrays, 'id', 'username');
+
     echo $form->field($model, 'owner')->dropDownList($items);
     ?>
+    <?= $form->field($model, 'dataFile')->fileInput() ?>
     <?php
     if ($model->isNewRecord) {
         echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
@@ -30,6 +32,8 @@ use yii\captcha\Captcha;
         ]);
     }
     ?>
+
+
 
 
     <?php if (!Yii::$app->request->isAjax) { ?>

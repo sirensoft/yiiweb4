@@ -47,6 +47,9 @@ return [
         'testbeta' => [
             'class' => 'frontend\modules\testbeta\testbeta',
         ],
+         'upload' => [
+            'class' => 'frontend\modules\upload\Upload',
+        ],
         
     ]
 ];
