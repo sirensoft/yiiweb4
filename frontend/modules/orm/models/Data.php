@@ -35,8 +35,7 @@ class Data extends \yii\db\ActiveRecord {
         return [
             [['val'], 'required'],
             [['val'], 'unique'],
-            [['val', 'owner', 'd_update'], 'string', 'max' => 255],
-            [['dataFile'], 'safe'],
+            [['val', 'owner', 'd_update'], 'string', 'max' => 255],           
             [
                 'verifyCode', 'captcha',
                 'captchaAction' => '/orm/default/captcha',
