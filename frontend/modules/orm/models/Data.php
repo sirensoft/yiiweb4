@@ -44,7 +44,7 @@ class Data extends \yii\db\ActiveRecord {
                     return $this->isNewRecord;
                 }
             ],
-            [['dataFile'], 'file', 'extensions' => 'png, jpg, doc'],
+            [['dataFile'], 'file', 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -81,7 +81,7 @@ class Data extends \yii\db\ActiveRecord {
     }
 
     public function upload() {
-        $this->dataFile->saveAs('uploads/' . $this->dataFile->baseName . '.' . $this->dataFile->extension);
+        $this->dataFile->saveAs('uploads/img_' . $this->id . '.' . $this->dataFile->extension);
     }
 
 }
