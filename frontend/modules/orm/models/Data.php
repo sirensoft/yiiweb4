@@ -7,6 +7,7 @@ use common\models\User;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "data".
@@ -35,7 +36,7 @@ class Data extends \yii\db\ActiveRecord {
         return [
             [['val'], 'required'],
             [['val'], 'unique'],
-            [['val', 'owner', 'd_update'], 'string', 'max' => 255],           
+            [['val', 'owner', 'd_update'], 'string', 'max' => 255],
             [
                 'verifyCode', 'captcha',
                 'captchaAction' => '/orm/default/captcha',
@@ -43,7 +44,7 @@ class Data extends \yii\db\ActiveRecord {
                     return $this->isNewRecord;
                 }
             ],
-            [['dataFile'], 'file', 'extensions' => 'png, jpg'],
+            [ ['dataFile'], 'file', 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -80,7 +81,10 @@ class Data extends \yii\db\ActiveRecord {
     }
 
     public function upload() {
-        $this->dataFile->saveAs('uploads/img_' . $this->id . '.' . $this->dataFile->extension);
+        $this->dataFile = UploadedFile::getInstance($this, 'dataFile');
+        if ($this->dataFile) {
+            $this->dataFile->saveAs('uploads/img_' . $this->id . '.' . $this->dataFile->extension);
+        }
     }
 
 }

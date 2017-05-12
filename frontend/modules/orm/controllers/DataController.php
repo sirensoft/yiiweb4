@@ -47,7 +47,7 @@ class DataController extends Controller {
                         'roles' => ['user'],
                         'matchCallback' => function($rule, $action) {
                     $model = $this->findModel(\Yii::$app->request->get('id'));
-                    if (\Yii::$app->user->can('updateOwn', ['model' => $model,'attr'=>'owner'])) {
+                    if (\Yii::$app->user->can('accessOwn', ['model' => $model,'attr'=>'owner'])) {
                         return true;
                     }
                 }
@@ -57,7 +57,7 @@ class DataController extends Controller {
                         'allow' => TRUE,
                         'matchCallback' => function($rule, $action) {
                     $model = $this->findModel(\Yii::$app->request->get('id'));
-                    if (\Yii::$app->user->can('updateData', ['model' => $model])) {
+                    if (\Yii::$app->user->can('accessOwn', ['model' => $model])) {
                         return true;
                     }
                 },
@@ -144,7 +144,7 @@ class DataController extends Controller {
                     Html::button('Save', ['class' => 'btn btn-primary', 'type' => "submit"])
                 ];
             } else if ($model->load($request->post()) && $model->save()) {
-                $model->dataFile = UploadedFile::getInstance($model, 'dataFile');
+                //$model->dataFile = UploadedFile::getInstance($model, 'dataFile');
                 $model->upload();
                 return [
                     'forceReload' => '#crud-datatable-pjax',
@@ -169,7 +169,7 @@ class DataController extends Controller {
              */
             if ($model->load($request->post()) && $model->save()) {
 
-                $model->dataFile = UploadedFile::getInstance($model, 'dataFile');
+                //$model->dataFile = UploadedFile::getInstance($model, 'dataFile');
                 $model->upload();
 
                 \Yii::$app->session->setFlash('success', "OK");
@@ -216,6 +216,7 @@ class DataController extends Controller {
                     'footer' => Html::button('Close', ['class' => 'btn btn-default pull-left', 'data-dismiss' => "modal"])
                 ];
             } else if ($model->load($request->post()) && $model->save()) {
+                $model->upload();
                 return [
                     'forceReload' => '#crud-datatable-pjax',
                     'title' => "Data #" . $id,
@@ -241,6 +242,7 @@ class DataController extends Controller {
              */
 
             if ($model->load($request->post()) && $model->save()) {
+                $model->upload();
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('update', [
