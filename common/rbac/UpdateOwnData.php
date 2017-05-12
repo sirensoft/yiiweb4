@@ -13,7 +13,7 @@ class UpdateOwnData extends Rule
         if($user_id === 1){
            // return TRUE;
         }
-        return $params['model']->owner == $user_id;
+        return $params['model']->$params['attr'] == $user_id;
     }
 }
  ?>

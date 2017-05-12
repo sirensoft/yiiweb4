@@ -47,7 +47,7 @@ class DataController extends Controller {
                         'roles' => ['user'],
                         'matchCallback' => function($rule, $action) {
                     $model = $this->findModel(\Yii::$app->request->get('id'));
-                    if (\Yii::$app->user->can('updateOwn', ['model' => $model])) {
+                    if (\Yii::$app->user->can('updateOwn', ['model' => $model,'attr'=>'owner'])) {
                         return true;
                     }
                 }
@@ -170,7 +170,7 @@ class DataController extends Controller {
             if ($model->load($request->post()) && $model->save()) {
 
                 $model->dataFile = UploadedFile::getInstance($model, 'dataFile');
-                $model->upload();                
+                $model->upload();
 
                 \Yii::$app->session->setFlash('success', "OK");
                 return $this->redirect(['view', 'id' => $model->id]);
