@@ -6,6 +6,9 @@ use Yii;
 use frontend\modules\visit\models\CProvince;
 use frontend\modules\visit\models\CAmpur;
 use frontend\modules\visit\models\CTambon;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "tbperson".
@@ -24,6 +27,8 @@ use frontend\modules\visit\models\CTambon;
  * @property string $dischage_code
  * @property string $color
  * @property string $note
+ * @property string $created_by
+ * @property string $d_update
  */
 class Tbperson extends \yii\db\ActiveRecord {
 
@@ -40,7 +45,7 @@ class Tbperson extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['name', 'lname'], 'required'],
-            [['birth'], 'safe'],
+            [['birth','created_by'], 'safe'],
             [['age_y'], 'integer'],
             [['note'], 'string'],
             [['prename', 'name', 'lname', 'sex', 'addr', 'prov_code', 'amp_code', 'tmb_code', 'dischage_code', 'color'], 'string', 'max' => 255],
@@ -69,17 +74,29 @@ class Tbperson extends \yii\db\ActiveRecord {
         ];
     }
 
+    public function behaviors() {
+        return[
+            ['class' => BlameableBehavior::className() ],
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'd_update',
+                'updatedAtAttribute' => 'd_update',
+                'value' => new Expression('NOW()')
+            ]
+        ];
+    }
+
     // join
     public function getProv() {
         return $this->hasOne(CProvince::className(), ['changwatcode' => 'prov_code']);
     }
 
     public function getAmpur() {
-        return $this->hasOne(CAmpur::className(), ['ampurcodefull'=>'amp_code']);
+        return $this->hasOne(CAmpur::className(), ['ampurcodefull' => 'amp_code']);
     }
 
     public function getTambon() {
-        return $this->hasOne(CTambon::className(), ['tamboncodefull'=> 'tmb_code']);
+        return $this->hasOne(CTambon::className(), ['tamboncodefull' => 'tmb_code']);
     }
 
     //end join

@@ -21,7 +21,7 @@ class TbpersonSearch extends Tbperson {
         return [
             [['id', 'age_y'], 'integer'],
             [['prename', 'name', 'lname', 'birth', 'sex', 'addr', 'prov_code', 'amp_code', 'tmb_code', 'dischage_code', 'color', 'note'], 'safe'],
-            [['glob_find'], 'safe']
+            [['glob_find','created_by'], 'safe']
         ];
     }
 
@@ -75,7 +75,8 @@ class TbpersonSearch extends Tbperson {
                 ->andFilterWhere(['like', 'c_tambon.tambonname', $this->tmb_code])
                 ->andFilterWhere(['like', 'dischage_code', $this->dischage_code])
                 ->andFilterWhere(['like', 'color', $this->color])
-                ->andFilterWhere(['like', 'note', $this->note]);
+                ->andFilterWhere(['like', 'note', $this->note])
+                ->andFilterWhere(['like','create_by',  $this->created_by]);
 
         if ($this->glob_find) {
             $query->orFilterWhere(['like', 'prename', $this->glob_find])
@@ -86,6 +87,7 @@ class TbpersonSearch extends Tbperson {
                     ->orFilterWhere(['like', 'c_ampur.ampurname', $this->glob_find])
                     ->orFilterWhere(['like', 'c_tambon.tambonname', $this->glob_find])
                     ->orFilterWhere(['like', 'note', $this->glob_find]);
+                    
         }
 
 
