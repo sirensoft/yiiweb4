@@ -39,7 +39,7 @@ use frontend\modules\visit\models\CProvince;
 
     <?php
     echo $form->field($model, 'amp_code')->widget(DepDrop::classname(), [
-        'data' => !empty($amp)?$amp:[], 
+        'data' => !empty($amp) ? $amp : [],
         'options' => ['id' => 'amp_code'],
         'pluginOptions' => [
             'depends' => ['prov_code'],
@@ -52,7 +52,7 @@ use frontend\modules\visit\models\CProvince;
 
     <?php
     echo $form->field($model, 'tmb_code')->widget(DepDrop::classname(), [
-        'data'=>!empty($tmb)?$tmb:[],
+        'data' => !empty($tmb) ? $tmb : [],
         'options' => ['id' => 'tmb_code'],
         'pluginOptions' => [
             'depends' => ['amp_code'],
