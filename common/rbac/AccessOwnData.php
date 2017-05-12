@@ -3,9 +3,9 @@ namespace common\rbac;
 
 use yii\rbac\Rule;
 
-class UpdateOwnData extends Rule
+class AccessOwnData extends Rule
 {
-    public $name = 'UpdateOwnData';
+    public $name = 'AccessOwnData';
 
     public function execute($user_id, $item, $params)
     {

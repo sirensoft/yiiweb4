@@ -37,11 +37,19 @@ class PersonController extends Controller {
                 },
                 'only' => ['create', 'update', 'delete', 'view', 'index'],
                 'rules' => [
-
                     [
-                        'actions' => ['create', 'view', 'index'],
+                        'actions' => ['create', 'index'],
                         'allow' => TRUE,
                         'roles' => ['user'],
+                    ],
+                     [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['user'],
+                        'matchCallback' => function($rule, $action) {
+                    $model = $this->findModel(\Yii::$app->request->get('id'));
+                    return \Yii::$app->user->can('accessOwn', ['model' => $model, 'attr' => 'created_by']);
+                }
                     ],
                     [
                         'allow' => true,
@@ -49,7 +57,7 @@ class PersonController extends Controller {
                         'roles' => ['user'],
                         'matchCallback' => function($rule, $action) {
                     $model = $this->findModel(\Yii::$app->request->get('id'));
-                    return \Yii::$app->user->can('updateOwn', ['model' => $model, 'attr' => 'created_by']);
+                    return \Yii::$app->user->can('accessOwn', ['model' => $model, 'attr' => 'created_by']);
                 }
                     ],
                     [
@@ -58,7 +66,7 @@ class PersonController extends Controller {
                         'roles' => ['user'],
                         'matchCallback' => function($rule, $action) {
                     $model = $this->findModel(\Yii::$app->request->get('id'));
-                    return \Yii::$app->user->can('updateOwn', ['model' => $model, 'attr' => 'created_by']);
+                    return \Yii::$app->user->can('accessOwn', ['model' => $model, 'attr' => 'created_by']);
                 }
                     ],
                     
