@@ -15,15 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, 'glob_find') ?>
 
-    <?= $form->field($model, 'prename') ?>
-
-    <?= $form->field($model, 'name') ?>
-
-    <?= $form->field($model, 'lname') ?>
-
-    <?= $form->field($model, 'birth') ?>
+   
 
     <?php // echo $form->field($model, 'sex') ?>
 

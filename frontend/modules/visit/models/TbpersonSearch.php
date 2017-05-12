@@ -10,24 +10,25 @@ use frontend\modules\visit\models\Tbperson;
 /**
  * TbpersonSearch represents the model behind the search form about `frontend\modules\visit\models\Tbperson`.
  */
-class TbpersonSearch extends Tbperson
-{
+class TbpersonSearch extends Tbperson {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public $glob_find;
+
+    public function rules() {
         return [
             [['id', 'age_y'], 'integer'],
             [['prename', 'name', 'lname', 'birth', 'sex', 'addr', 'prov_code', 'amp_code', 'tmb_code', 'dischage_code', 'color', 'note'], 'safe'],
+            [['glob_find'], 'safe']
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -39,8 +40,7 @@ class TbpersonSearch extends Tbperson
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Tbperson::find();
         $query->joinWith('prov');
 
@@ -66,17 +66,31 @@ class TbpersonSearch extends Tbperson
         ]);
 
         $query->andFilterWhere(['like', 'prename', $this->prename])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'lname', $this->lname])
-            ->andFilterWhere(['like', 'sex', $this->sex])
-            ->andFilterWhere(['like', 'addr', $this->addr])
-            ->andFilterWhere(['like', 'c_province.changwatname', $this->prov_code])
-            ->andFilterWhere(['like', 'amp_code', $this->amp_code])
-            ->andFilterWhere(['like', 'tmb_code', $this->tmb_code])
-            ->andFilterWhere(['like', 'dischage_code', $this->dischage_code])
-            ->andFilterWhere(['like', 'color', $this->color])
-            ->andFilterWhere(['like', 'note', $this->note]);
+                ->andFilterWhere(['like', 'name', $this->name])
+                ->andFilterWhere(['like', 'lname', $this->lname])
+                ->andFilterWhere(['like', 'sex', $this->sex])
+                ->andFilterWhere(['like', 'addr', $this->addr])
+                ->andFilterWhere(['like', 'c_province.changwatname', $this->prov_code])
+                ->andFilterWhere(['like', 'amp_code', $this->amp_code])
+                ->andFilterWhere(['like', 'tmb_code', $this->tmb_code])
+                ->andFilterWhere(['like', 'dischage_code', $this->dischage_code])
+                ->andFilterWhere(['like', 'color', $this->color])
+                ->andFilterWhere(['like', 'note', $this->note]);
+
+        if ($this->glob_find) {
+            $query->orFilterWhere(['like', 'prename', $this->glob_find])
+                    ->orFilterWhere(['like', 'name', $this->glob_find])
+                    ->orFilterWhere(['like', 'lname', $this->glob_find])
+                    ->orFilterWhere(['like', 'addr', $this->glob_find])
+                    ->orFilterWhere(['like', 'c_province.changwatname', $this->glob_find])
+                    ->orFilterWhere(['like', 'amp_code', $this->glob_find])
+                    ->orFilterWhere(['like', 'tmb_code', $this->glob_find])
+                    ->orFilterWhere(['like', 'note', $this->glob_find]);
+        }
+
+
 
         return $dataProvider;
     }
+
 }
