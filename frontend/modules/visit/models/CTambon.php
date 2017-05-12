@@ -46,7 +46,7 @@ class CTambon extends \yii\db\ActiveRecord
     {
         return [
             'tamboncode' => 'Tamboncode',
-            'tambonname' => 'Tambonname',
+            'tambonname' => 'ตำบล',
             'tamboncodefull' => 'Tamboncodefull',
             'ampurcode' => 'Ampurcode',
             'changwatcode' => 'Changwatcode',

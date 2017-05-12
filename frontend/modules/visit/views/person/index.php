@@ -32,9 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'sex',
             // 'age_y',
             // 'addr',
-            // 'prov_code',
-            // 'amp_code',
-            // 'tmb_code',
+            //'prov_code',
+            [
+                'attribute'=>'prov_code',
+                'value'=>'prov.changwatname'
+               
+            ],
+             'amp_code',
+             'tmb_code',
             // 'dischage_code',
             // 'color',
             // 'note:ntext',

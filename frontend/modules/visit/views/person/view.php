@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'sex',
             'age_y',
             'addr',
-            'prov_code',
+            'prov.changwatname',
             'amp_code',
             'tmb_code',
             'dischage_code',

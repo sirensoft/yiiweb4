@@ -3,6 +3,9 @@
 namespace frontend\modules\visit\models;
 
 use Yii;
+use frontend\modules\visit\models\CProvince;
+use frontend\modules\visit\models\CAmpur;
+use frontend\modules\visit\models\CTambon;
 
 /**
  * This is the model class for table "tbperson".
@@ -67,5 +70,8 @@ class Tbperson extends \yii\db\ActiveRecord
             'color' => 'Color',
             'note' => 'Note',
         ];
+    }
+    public function getProv(){
+        return $this->hasOne(CProvince::className(), ['changwatcode'=>'prov_code']);
     }
 }

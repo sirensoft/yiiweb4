@@ -44,7 +44,7 @@ class CAmpur extends \yii\db\ActiveRecord
     {
         return [
             'ampurcode' => 'Ampurcode',
-            'ampurname' => 'Ampurname',
+            'ampurname' => 'อำเภอ',
             'ampurcodefull' => 'Ampurcodefull',
             'changwatcode' => 'Changwatcode',
             'flag_status' => 'Flag Status',

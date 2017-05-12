@@ -42,6 +42,7 @@ class TbpersonSearch extends Tbperson
     public function search($params)
     {
         $query = Tbperson::find();
+        $query->joinWith('prov');
 
         // add conditions that should always apply here
 
@@ -69,7 +70,7 @@ class TbpersonSearch extends Tbperson
             ->andFilterWhere(['like', 'lname', $this->lname])
             ->andFilterWhere(['like', 'sex', $this->sex])
             ->andFilterWhere(['like', 'addr', $this->addr])
-            ->andFilterWhere(['like', 'prov_code', $this->prov_code])
+            ->andFilterWhere(['like', 'c_province.changwatname', $this->prov_code])
             ->andFilterWhere(['like', 'amp_code', $this->amp_code])
             ->andFilterWhere(['like', 'tmb_code', $this->tmb_code])
             ->andFilterWhere(['like', 'dischage_code', $this->dischage_code])
