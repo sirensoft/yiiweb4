@@ -3,6 +3,7 @@
 namespace frontend\modules\orm\controllers;
 
 use yii\web\Controller;
+use frontend\modules\orm\models\Data;
 
 /**
  * Default controller for the `data` module
@@ -22,6 +23,10 @@ class DefaultController extends Controller
                 //'fixedVerifyCode' => '1234',
             ],
         ];
+    }
+    public function actionTest1(){
+        $model = Data::find()->asArray()->select('id,val as name')->all();
+        return \yii\helpers\VarDumper::dump($model);
     }
     
 }
