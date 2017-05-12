@@ -50,6 +50,9 @@ return [
          'upload' => [
             'class' => 'frontend\modules\upload\Upload',
         ],
+        'visit' => [
+            'class' => 'frontend\modules\visit\Visit',
+        ],
         
     ]
 ];
