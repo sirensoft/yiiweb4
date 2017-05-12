@@ -10,14 +10,16 @@ use yii\widgets\ActiveForm;
 
 <div class="tbperson-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-    ]); ?>
+    <?php
+    $form = ActiveForm::begin([
+                'action' => ['index'],
+                'method' => 'get',
+    ]);
+    ?>
 
-    <?= $form->field($model, 'glob_find') ?>
 
-   
+
+
 
     <?php // echo $form->field($model, 'sex') ?>
 
@@ -35,12 +37,16 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'color') ?>
 
-    <?php // echo $form->field($model, 'note') ?>
+    <?php // echo $form->field($model, 'note')  ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+
+    <div class="form-group input-group">
+        <?= $form->field($model, 'glob_find')->label(FALSE) ?>
+        <span class="input-group-btn">
+            <?= Html::submitButton('Search', ['class' => 'btn btn-primary','style'=>'margin-top:10px']) ?>  
+        </span>
     </div>
+
 
     <?php ActiveForm::end(); ?>
 

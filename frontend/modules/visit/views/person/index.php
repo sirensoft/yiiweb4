@@ -11,19 +11,19 @@ $this->title = 'รายชื่อ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbperson-index">
-
-    
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::a('Create Tbperson', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
+
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'prename',
             'name',
@@ -34,25 +34,24 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'addr',
             //'prov_code',
             [
-                'attribute'=>'prov_code',
-                'value'=>'prov.changwatname'
-               
+                'attribute' => 'prov_code',
+                'value' => 'prov.changwatname'
             ],
             //'amp_code',
-             [
-                 'attribute'=>'amp_code',
-                 'value'=>'ampur.ampurname'                 
-             ],
-             //'tmb_code',
             [
-                 'attribute'=>'tmb_code',
-                 'value'=>'tambon.tambonname'                 
-             ],
+                'attribute' => 'amp_code',
+                'value' => 'ampur.ampurname'
+            ],
+            //'tmb_code',
+            [
+                'attribute' => 'tmb_code',
+                'value' => 'tambon.tambonname'
+            ],
             // 'dischage_code',
             // 'color',
             // 'note:ntext',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);
+    ?>
 </div>
