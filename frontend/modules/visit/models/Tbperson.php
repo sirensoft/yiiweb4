@@ -25,23 +25,21 @@ use frontend\modules\visit\models\CTambon;
  * @property string $color
  * @property string $note
  */
-class Tbperson extends \yii\db\ActiveRecord
-{
+class Tbperson extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'tbperson';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['name', 'lname'],'required'],
+            [['name', 'lname'], 'required'],
             [['birth'], 'safe'],
             [['age_y'], 'integer'],
             [['note'], 'string'],
@@ -52,8 +50,7 @@ class Tbperson extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'prename' => 'คำนำ',
@@ -71,7 +68,19 @@ class Tbperson extends \yii\db\ActiveRecord
             'note' => 'Note',
         ];
     }
-    public function getProv(){
-        return $this->hasOne(CProvince::className(), ['changwatcode'=>'prov_code']);
+
+    // join
+    public function getProv() {
+        return $this->hasOne(CProvince::className(), ['changwatcode' => 'prov_code']);
     }
+
+    public function getAmpur() {
+        return $this->hasOne(CAmpur::className(), ['ampurcodefull'=>'amp_code']);
+    }
+
+    public function getTambon() {
+        return $this->hasOne(CTambon::className(), ['tamboncodefull'=> 'tmb_code']);
+    }
+
+    //end join
 }

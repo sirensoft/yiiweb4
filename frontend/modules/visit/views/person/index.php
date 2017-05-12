@@ -38,8 +38,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'prov.changwatname'
                
             ],
-             'amp_code',
-             'tmb_code',
+            //'amp_code',
+             [
+                 'attribute'=>'amp_code',
+                 'value'=>'ampur.ampurname'                 
+             ],
+             //'tmb_code',
+            [
+                 'attribute'=>'tmb_code',
+                 'value'=>'tambon.tambonname'                 
+             ],
             // 'dischage_code',
             // 'color',
             // 'note:ntext',

@@ -42,7 +42,7 @@ class TbpersonSearch extends Tbperson {
      */
     public function search($params) {
         $query = Tbperson::find();
-        $query->joinWith('prov');
+        $query->joinWith('prov')->joinWith('ampur')->joinWith('tambon');
 
         // add conditions that should always apply here
 
@@ -71,8 +71,8 @@ class TbpersonSearch extends Tbperson {
                 ->andFilterWhere(['like', 'sex', $this->sex])
                 ->andFilterWhere(['like', 'addr', $this->addr])
                 ->andFilterWhere(['like', 'c_province.changwatname', $this->prov_code])
-                ->andFilterWhere(['like', 'amp_code', $this->amp_code])
-                ->andFilterWhere(['like', 'tmb_code', $this->tmb_code])
+                ->andFilterWhere(['like', 'c_ampur.ampurname', $this->amp_code])
+                ->andFilterWhere(['like', 'c_tambon.tambonname', $this->tmb_code])
                 ->andFilterWhere(['like', 'dischage_code', $this->dischage_code])
                 ->andFilterWhere(['like', 'color', $this->color])
                 ->andFilterWhere(['like', 'note', $this->note]);
@@ -83,8 +83,8 @@ class TbpersonSearch extends Tbperson {
                     ->orFilterWhere(['like', 'lname', $this->glob_find])
                     ->orFilterWhere(['like', 'addr', $this->glob_find])
                     ->orFilterWhere(['like', 'c_province.changwatname', $this->glob_find])
-                    ->orFilterWhere(['like', 'amp_code', $this->glob_find])
-                    ->orFilterWhere(['like', 'tmb_code', $this->glob_find])
+                    ->orFilterWhere(['like', 'c_ampur.ampurname', $this->glob_find])
+                    ->orFilterWhere(['like', 'c_tambon.tambonname', $this->glob_find])
                     ->orFilterWhere(['like', 'note', $this->glob_find]);
         }
 
