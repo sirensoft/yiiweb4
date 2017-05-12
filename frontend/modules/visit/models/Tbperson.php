@@ -9,6 +9,7 @@ use frontend\modules\visit\models\CTambon;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "tbperson".
@@ -35,6 +36,8 @@ class Tbperson extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
+    public $imgFile;
+
     public static function tableName() {
         return 'tbperson';
     }
@@ -45,10 +48,11 @@ class Tbperson extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['name', 'lname'], 'required'],
-            [['birth','created_by'], 'safe'],
+            [['birth', 'created_by'], 'safe'],
             [['age_y'], 'integer'],
             [['note'], 'string'],
             [['prename', 'name', 'lname', 'sex', 'addr', 'prov_code', 'amp_code', 'tmb_code', 'dischage_code', 'color'], 'string', 'max' => 255],
+            [ ['imgFile'], 'file', 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -76,7 +80,7 @@ class Tbperson extends \yii\db\ActiveRecord {
 
     public function behaviors() {
         return[
-            ['class' => BlameableBehavior::className() ],
+            ['class' => BlameableBehavior::className()],
             [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'd_update',
@@ -100,4 +104,11 @@ class Tbperson extends \yii\db\ActiveRecord {
     }
 
     //end join
+    
+    public function upload(){
+        $this->imgFile = UploadedFile::getInstance($this, 'imgFile');
+        if ($this->imgFile) {
+            $this->imgFile->saveAs('uploads/p' . $this->id . '.' . $this->imgFile->extension);
+        }
+    }
 }

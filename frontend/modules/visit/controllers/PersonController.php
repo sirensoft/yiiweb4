@@ -110,6 +110,7 @@ class PersonController extends Controller {
         $model = new Tbperson();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+             $model->upload();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -142,6 +143,7 @@ class PersonController extends Controller {
         $tmb = ArrayHelper::map($tmb, 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->upload();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

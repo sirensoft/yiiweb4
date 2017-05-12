@@ -27,6 +27,7 @@ use frontend\modules\visit\models\CProvince;
     <?= $form->field($model, 'sex')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'age_y')->textInput() ?>
+     <?= $form->field($model, 'imgFile')->fileInput()->label('รูปภาพ') ?>
 
     <?= $form->field($model, 'addr')->textInput(['maxlength' => true]) ?>
 
