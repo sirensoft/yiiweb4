@@ -43,7 +43,7 @@ use yii\widgets\ActiveForm;
     <div class="form-group input-group">
         <?= $form->field($model, 'glob_find')->label(FALSE) ?>
         <span class="input-group-btn">
-            <?= Html::submitButton('Search', ['class' => 'btn btn-primary','style'=>'margin-top:10px']) ?>  
+            <?= Html::submitButton(' <i class="glyphicon glyphicon-search"></i> ', ['class' => 'btn btn-primary','style'=>'margin-top:10px']) ?>  
         </span>
     </div>
 
