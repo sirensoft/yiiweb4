@@ -39,6 +39,7 @@ class PersonController extends Controller
     public function actionIndex()
     {
         $searchModel = new TbpersonSearch();
+        $searchModel->created_by = \Yii::$app->user->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

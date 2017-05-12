@@ -76,7 +76,7 @@ class TbpersonSearch extends Tbperson {
                 ->andFilterWhere(['like', 'dischage_code', $this->dischage_code])
                 ->andFilterWhere(['like', 'color', $this->color])
                 ->andFilterWhere(['like', 'note', $this->note])
-                ->andFilterWhere(['like','create_by',  $this->created_by]);
+                ->andFilterWhere(['like','created_by',  $this->created_by]);
 
         if ($this->glob_find) {
             $query->orFilterWhere(['like', 'prename', $this->glob_find])

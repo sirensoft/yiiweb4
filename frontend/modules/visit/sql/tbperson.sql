@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50548
 File Encoding         : 65001
 
-Date: 2017-05-12 09:44:17
+Date: 2017-05-12 21:26:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,10 +34,16 @@ CREATE TABLE `tbperson` (
   `dischage_code` varchar(255) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
   `note` text,
+  `created_by` varchar(255) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  `d_update` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tbperson
 -- ----------------------------
-INSERT INTO `tbperson` VALUES ('1', 'นาย', 'อุเทน', 'จาดยางโทน', null, '', null, '', '56', '5602', '560207', '', null, '');
+INSERT INTO `tbperson` VALUES ('1', 'นาย', 'อุเทน', 'จาดยางโทน', null, '', null, '', '56', '5602', '560207', '', null, '', '1', null, null);
+INSERT INTO `tbperson` VALUES ('2', 'นาง', 'aaaa', 'aaaaaaaaaaaa', null, '', null, '', '56', '5605', '560507', '', null, '', '2', '2', '2017-05-12 21:24:34');
+INSERT INTO `tbperson` VALUES ('3', 'นาย', 'ออออสส', 'กกกกก', null, '', null, '', '56', '5609', '560901', '', null, '', '2', '2', '2017-05-12 21:24:59');
+INSERT INTO `tbperson` VALUES ('4', 'นาย', 'กกกก', 'กกกก', null, '', null, '', '54', '5406', '540602', '', null, '', '2', '2', '2017-05-12 21:15:47');
