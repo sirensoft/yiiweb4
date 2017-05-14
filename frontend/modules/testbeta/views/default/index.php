@@ -1,12 +1,20 @@
-<div class="TestBeta-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
-</div>
+<?php
+use yii\helpers\Html;
+use yii\web\JsExpression;
+use yii\helpers\Url;
+
+$date = date('Ymd');
+
+
+echo Html::button('click ', ['id'=>'btn-ok','data'=>$date]);
+
+$route = Url::to(['/site/index','data'=>$date]);
+$js =<<<JS
+     $('#btn-ok').click(function(){
+        var date=$(this).attr("data");
+        var win=window.open("$route&data2="+date,"win","top=100,left=200,width=600,height=400");
+     });   
+JS;
+$this->registerJs($js);
+      
+
