@@ -57,7 +57,7 @@ class DataController extends Controller {
                         'allow' => TRUE,
                         'matchCallback' => function($rule, $action) {
                     $model = $this->findModel(\Yii::$app->request->get('id'));
-                    if (\Yii::$app->user->can('accessOwn', ['model' => $model])) {
+                    if (\Yii::$app->user->can('accessOwn', ['model' => $model,'attr'=>'owner'])) {
                         return true;
                     }
                 },
