@@ -57,9 +57,9 @@ Highcharts.chart('container', {
         name: 'Brands',
         colorByPoint: true,
         data: [{
-            name: 'Microsoft Internet Explorer',
+            name: 'Internet Explorer',
             y: 56.33,
-            drilldown: 'Microsoft Internet Explorer'
+            drilldown: 'Internet Explorer'
         }, {
             name: 'Chrome',
             y: 24.03,
@@ -84,8 +84,8 @@ Highcharts.chart('container', {
     }],
     drilldown: {
         series: [{
-            name: 'Microsoft Internet Explorer',
-            id: 'Microsoft Internet Explorer',
+            name: 'Internet Explorer',
+            id: 'Internet Explorer',
             data: [
                 [
                     'v11.0',
