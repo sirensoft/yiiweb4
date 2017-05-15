@@ -7,13 +7,13 @@ use miloschuman\highcharts\HighchartsAsset;
 HighchartsAsset::register($this)->withScripts(['modules/exporting', 'modules/drilldown']);
 
 $data = [
-    ['name'=>'อำเภอ A','data'=>[100]],
-    ['name'=>'อำเภอ B','data'=>[90]],
+    ['name'=>'อำเภอ A','y'=>100],
+    ['name'=>'อำเภอ B','y'=>90],
 ];
-$b = [['name'=>'อำเภอ C','data'=>[45]]];
+$b = [['name'=>'อำเภอ C','y'=>45]];
 
 $data=ArrayHelper::merge($data,$b);
-$data[]=['name'=>'อำเภอ D','data'=>[90]];
+$data[]=['name'=>'อำเภอ D','y'=>90];
 
 $json = Json::encode($data);
 echo ($json);
@@ -35,25 +35,19 @@ Highcharts.chart('container', {
     },
     
      xAxis: {
-        categories: ['จำนวน'],
-        
+        type: 'category'
     },
     yAxis: {
         title: {
-            text: null
+            text: 'Total percent market share'
         }
+
     },
-    /*series: [{
-        name: 'อำเภอ A',
-        data: [107]
-    }, {
-        name: 'อำเภอ B',
-        data: [133]
-    }, {
-        name: 'อำเภอ C',
-        data: [1052]
-    }]*/
-    series:$json
+    series:[{
+        name: 'อำเภอ',
+        colorByPoint: true,
+        data: $json
+    }],
 });
 JS;
 
