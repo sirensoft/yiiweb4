@@ -40,9 +40,9 @@ Highcharts.chart('container', {
     plotOptions: {
         line: {
             dataLabels: {
-                enabled: true
+                //enabled: true
             },
-            enableMouseTracking: false
+            enableMouseTracking: true
         }
     },
     series: [{
