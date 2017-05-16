@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 
 $this->title ="รายงาน ncd";
-$this->params['breadcrumbs'][] = ['label'=>'หน้าหลัก plktest','url'=>'/plktest/default/index'];
+$this->params['breadcrumbs'][] = ['label'=>'หน้าหลัก plktest','url'=>['/plktest/default/index']];
 $this->params['breadcrumbs'][] = $this->title;
  
 $form = ActiveForm::begin([

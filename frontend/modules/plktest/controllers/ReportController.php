@@ -1,10 +1,12 @@
 <?php
 namespace frontend\modules\plktest\controllers;
-use yii\web\Controller;
+//use yii\web\Controller;
 use yii\data\ArrayDataProvider;
+use common\components\AppController;
 
-class ReportController extends Controller{
+class ReportController extends AppController{
     public function actionNcd($date1=NULL,$date2=NULL){
+        //$this->permitRole([1,2,3]);
         
         $sql = " select * from t_chronic";//1
         
