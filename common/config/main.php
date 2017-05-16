@@ -53,6 +53,9 @@ return [
         'visit' => [
             'class' => 'frontend\modules\visit\Visit',
         ],
+        'plktest' => [
+            'class' => 'frontend\modules\plktest\Plktest',
+        ],
         
     ]
 ];
