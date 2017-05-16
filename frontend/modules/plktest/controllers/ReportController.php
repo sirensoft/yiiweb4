@@ -10,7 +10,11 @@ class ReportController extends Controller{
         
     }
     public function actionKpiNcd(){
-        echo "kpi-ncd";
+        $data = 'OK';
+        return $this->render('kpi-ncd',[
+            'data'=>$data,
+            'data2'=>'ข้อมูล 2'
+        ]);
     }
     
 }
