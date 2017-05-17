@@ -1,5 +1,6 @@
 <?php
-
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 use kartik\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
@@ -60,74 +61,57 @@ echo GridView::widget([
 ?>
 <div id="container"></div>
 <?php
+$raw = $dataProvider->getModels();
+/*
+$data = [
+    ['name'=>'อำเภอ A','y'=>100],
+    ['name'=>'อำเภอ B','y'=>90],
+    ['name'=>'อำเภอ C','y'=>90],
+];*/
+$data = [];
+foreach ($raw as $value){
+   $data[]=[
+       'name'=>$value['hosname'],
+       'y'=>$value['a']*100/$value['b']
+   ] ;
+}
 
-$data = $dataProvider->getModels();
-print_r($data);
+$json = Json::encode($data);
+//echo ($json);
+?>
 
-$js=<<<JS
+
+<?php
+$js = <<<JS
 Highcharts.chart('container', {
     chart: {
-        type: 'bar'
+        type: 'column',        
     },
     title: {
-        text: 'Historic World Population by Region'
+        text: 'chart'
     },
     subtitle: {
-        text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+        text: ''
     },
-    xAxis: {
-        categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
-        title: {
-            text: null
-        }
+    
+     xAxis: {
+        type: 'category'
     },
     yAxis: {
-        min: 0,
         title: {
-            text: 'Population (millions)',
-            align: 'high'
-        },
-        labels: {
-            overflow: 'justify'
+            text: 'Total percent market share'
         }
     },
-    tooltip: {
-        valueSuffix: ' millions'
-    },
-    plotOptions: {
-        bar: {
-            dataLabels: {
-                enabled: true
-            }
-        }
-    },
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -40,
-        y: 80,
-        floating: true,
-        borderWidth: 1,
-        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-        shadow: true
-    },
-    credits: {
-        enabled: false
-    },
-    series: [{
-        name: 'Year 1800',
-        data: [107, 31, 635, 203, 2]
-    }, {
-        name: 'Year 1900',
-        data: [133, 156, 947, 408, 6]
-    }, {
-        name: 'Year 2012',
-        data: [1052, 954, 4250, 740, 38]
-    }]
+    series:[{
+        name: 'หน่วยงาน',
+        colorByPoint: true,
+        data: $json
+    }],
 });
 JS;
-$this->registerJs($js);
+$this->registerJS($js);
+
+
 
 
 
