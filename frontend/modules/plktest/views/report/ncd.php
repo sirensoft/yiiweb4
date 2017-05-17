@@ -51,5 +51,20 @@ echo GridView::widget([
     'dataProvider'=>$dataProvider,
     'panel'=>[
         'before'=>'ข้อมูลผู้ป่วยโรคเรื้อรัง'
+    ],
+    'columns'=>[
+        [
+            'class'=>'yii\grid\SerialColumn'
+        ],
+        'HOSPCODE',
+        'HOSNAME',
+        [
+            'attribute'=>'B',
+            'format'=>'Html',
+            'value'=>function($model){
+                return Html::a($model['B'],['/plktest/report/ncdindiv','hospcode'=>$model['HOSPCODE'],'xx'=>'sss']);
+            }
+        ],
+        'A'
     ]
 ]);
