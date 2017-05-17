@@ -43,6 +43,8 @@ AND p.nation in(99)
         if($this->date1 and $this->date2){
             $sql.="AND l.BDATE BETWEEN '$this->date1' AND '$this->date2' ";           
         }
+        $sql.=" GROUP BY p.check_hosp ";
+        
         $models = \Yii::$app->db->createCommand($sql)->queryAll();
         $query = new ArrayQuery();
         $query->from($models);
