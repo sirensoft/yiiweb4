@@ -5,6 +5,7 @@ namespace frontend\modules\plktest\controllers;
 //use yii\web\Controller;
 use yii\data\ArrayDataProvider;
 use common\components\AppController;
+use frontend\modules\plktest\models\AncSearch;
 
 class ReportController extends AppController {
 
@@ -53,6 +54,16 @@ AND p.nation in(99)
         return $this->render('kpi-ncd', [
                     'data' => $data,
                     'data2' => 'ข้อมูล 2'
+        ]);
+    }
+    public function actionAnc($date1=NULL,$date2=NULL){
+        $xxx = new AncSearch($date1,$date2);
+        $dataProvider = $xxx->search(\Yii::$app->request->queryParams);
+        return $this->render('anc',[
+            'dataProvider'=>$dataProvider,
+            'xxx'=>$xxx,
+            'date1'=>$date1,
+            'date2'=>$date2
         ]);
     }
 
