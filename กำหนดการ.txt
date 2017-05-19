@@ -10,11 +10,15 @@ DAY-1
     บ่าย   
         - Form and Widget , Verify Code ,Upload File
         - GridView and Customize
+        
 
 =======================================================     
 DAY-2
     เช้า
         - USER and RBAC
+        - DAO 
+        - Custom  Model from Query
+        
     บ่าย       
         - Chart 
         - Excel Report Template
@@ -24,6 +28,7 @@ DAY-2
 ======================================================= 
 DAY-3
     เช้า
+        - QGIS
         - GIS (Map)
     
        
