@@ -50,7 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'dischage_code',
             // 'color',
             // 'note:ntext',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => '\yii\grid\ActionColumn',
+                //'viewOptions'=>['label' => '<i class="glyphicon glyphicon-search"></i>']
+            ],
         ],
     ]);
     ?>
