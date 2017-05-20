@@ -41,7 +41,8 @@
         "2amigos/yii2-leaflet-markercluster-plugin" : "~1.0",
         "2amigos/yii2-leaflet-makimarker-plugin" : "~1.0",
         "2amigos/yii2-leaflet-awesome-plugin" : "~1.0",
-        "dektrium/yii2-user": "^0.9.12"
+        "dektrium/yii2-user": "^0.9.12",
+        "yii2mod/yii2-bootstrap-notify": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

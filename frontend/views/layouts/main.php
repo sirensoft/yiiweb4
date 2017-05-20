@@ -76,7 +76,8 @@ AppAsset::register($this);
 
             <div class="container">
                 <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
-                <?= Alert::widget() ?>
+                <?php //echo Alert::widget() ?>
+                <?php echo \yii2mod\notify\BootstrapNotify::widget(); ?>
                 <?= $content ?>
             </div>
         </div>
