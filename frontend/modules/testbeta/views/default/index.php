@@ -9,21 +9,23 @@ use yii\bootstrap\Modal;
 $date = date('Ymd');
 
 
-echo Html::button('Popup ', ['id'=>'btn-pop','data'=>$date]);
-echo Html::button('Modal',['id'=>'btn-modal']);
+echo Html::button('Popup ', ['id'=>'btn-pop','data'=>$date,'class'=>'btn']);
+echo " ";
+echo Html::button('Modal',['id'=>'btn-modal','class'=>'btn']);
+//echo Html::img('@web/images/loading.gif');
 
 Modal::begin([
     'header' => 'Title',
     'size' => 'modal-lg',
     'id' => 'modal',
 ]);
-echo "<div id='modalContent'></div>";
+echo "<div id='modalContent'><div style'text-align:cente'>".Html::img('@web/images/loading.gif')."</div>";
 Modal::end();
 
 
 
 $route = Url::to(['/site/index','data'=>$date]);
-$route2 = Url::to(['/site/contact']);
+$route2 = Url::to(['/site/contactt']);
 $js =<<<JS
      $('#btn-pop').click(function(){
         var date=$(this).attr("data");

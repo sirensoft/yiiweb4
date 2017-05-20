@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model frontend\models\Data */
 ?>
 <div class="data-view">
- <?=  Html::img('../../uploads/img_'.$model->id.'.png')?>
+ <?=  Html::img('@web/uploads/img_'.$model->id.'.png')?>
     
     <?= DetailView::widget([
         'model' => $model,
