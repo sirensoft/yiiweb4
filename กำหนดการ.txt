@@ -3,6 +3,7 @@ DAY-1
         - โครงสร้างไดเรคทอรี่
         - Array
         - Routing , Links 
+        - Database Connection
         - Model View Controller (MVC) ,
         - Module
         - Gii CRUD,AJAX-CRUD

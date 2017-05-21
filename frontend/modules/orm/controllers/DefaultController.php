@@ -28,5 +28,8 @@ class DefaultController extends Controller
         $model = Data::find()->asArray()->select('id,val as name')->all();
         return \yii\helpers\VarDumper::dump($model);
     }
+    public function actionTest2(){
+        return $this->render('test2');
+    }
     
 }
