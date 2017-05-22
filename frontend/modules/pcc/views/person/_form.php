@@ -2,6 +2,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\DatePicker;
+use frontend\modules\pcc\models\Province;
+use yii\helpers\ArrayHelper;
+use kartik\widgets\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\pcc\models\Person */
@@ -44,7 +47,19 @@ use kartik\widgets\DatePicker;
 
     <?= $form->field($model, 'moo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'prov_code')->textInput(['maxlength' => true]) ?>
+    <?php
+    $item = Province::find()->all();
+    $item = ArrayHelper::map($item,'changwatcode','changwatname');
+    ?>
+    
+    <?= $form->field($model, 'prov_code')->widget(Select2::classname(), [
+    'data' => $item,
+    'language' => 'th',
+    'options' => ['placeholder' => ' จังหวัด...'],
+    'pluginOptions' => [
+        'allowClear' => true
+    ],
+]); ?>
 
     <?= $form->field($model, 'amp_code')->textInput(['maxlength' => true]) ?>
 
