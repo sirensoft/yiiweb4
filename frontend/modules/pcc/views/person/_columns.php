@@ -42,18 +42,18 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'moo',
     // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'prov_code',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'amp_code',
-    // ],
-    // [
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'tmb_code',
-    // ],
+    [
+         'class'=>'\kartik\grid\DataColumn',
+         'attribute'=>'prov_code',
+    ],
+   [
+         'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'amp_code',
+   ],
+     [
+         'class'=>'\kartik\grid\DataColumn',
+         'attribute'=>'tmb_code',
+    ],
     // [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'lat',

@@ -30,7 +30,7 @@ class PersonController extends Controller {
                     'delete' => ['POST'],
                 ],
             ],
-            'access' => [
+            /*'access' => [
                 'class' => AccessControl::className(),
                 'denyCallback' => function ($rule, $action) {
                     throw new ForbiddenHttpException('ไม่อนุญาต!');
@@ -71,7 +71,7 @@ class PersonController extends Controller {
                     ],
                     
                 ],
-            ],
+            ],*/
         ];
     }
 
