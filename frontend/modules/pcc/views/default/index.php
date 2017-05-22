@@ -1,6 +1,7 @@
 <?php
 use frontend\modules\pcc\models\Person;
-use yii\grid\GridView;
+use kartik\grid\GridView;
+//use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
 
 /*
@@ -14,6 +15,15 @@ $data =[
 $model->attributes = $data;
 $model->save(); 
 */
+$model = Person::findOne([2,3,4]);
+$model->lname = "ใจไม่ดี";
+$model->save();
+
+$model = Person::findOne(5);
+if($model){
+    $model->delete();
+}
+
 
 $model = Person::find();
 
@@ -21,7 +31,10 @@ $dataProvider = new ActiveDataProvider([
     'query'=>$model
 ]);
 echo GridView::widget([
-    'dataProvider'=>$dataProvider
+    'dataProvider'=>$dataProvider,
+    'panel'=>[
+        'before'=>''
+    ]
 ]);
 
 
