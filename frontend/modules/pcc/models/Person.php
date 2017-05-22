@@ -29,6 +29,7 @@ class Person extends \yii\db\ActiveRecord
     {
         return [
             [['prename', 'name', 'lname'], 'string', 'max' => 255],
+            [['name'],'required']
         ];
     }
 
