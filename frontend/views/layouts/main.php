@@ -27,7 +27,7 @@ AppAsset::register($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => '<i class="glyphicon glyphicon-heart-empty"></i>',
+                'brandLabel' => '<i class="glyphicon glyphicon-home"></i>',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-custom navbar-fixed-top',
@@ -36,7 +36,7 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
+                //['label' => 'Contact', 'url' => ['/site/contact']],
                 [
                     'label' => 'Dropdown',
                     'items' => [
@@ -46,6 +46,7 @@ AppAsset::register($this);
                         ['label' => 'Level 2 - Dropdown B','url' => '#'],
                     ],
                 ],
+                
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Signup', 'url' => ['/user/registration/register']];
@@ -69,15 +70,15 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-left'],
                 'encodeLabels' => false,
-                'items' => [['label' => 'Yii2 Phayao']],
+                'items' => [['label' => 'App เขียนเล่น']],
             ]);
             NavBar::end();
             ?>
 
             <div class="container">
                 <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
-                <?php //echo Alert::widget() ?>
-                <?php echo \yii2mod\notify\BootstrapNotify::widget(); ?>
+                <?php echo Alert::widget() ?>
+                <?php //echo \yii2mod\notify\BootstrapNotify::widget(); ?>
                 <?= $content ?>
             </div>
         </div>

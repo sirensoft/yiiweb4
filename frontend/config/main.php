@@ -34,15 +34,15 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
-          'view' => [
+        
+         /* 'view' => [
           'theme' => [
           'pathMap' => [
           '@frontend/views' => '@frontend/themes/adminlte'
           ],
           ],
-          ],
-         */
+          ],*/
+         
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

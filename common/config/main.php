@@ -56,6 +56,9 @@ return [
         'plktest' => [
             'class' => 'frontend\modules\plktest\Plktest',
         ],
+        'pcc' => [
+            'class' => 'frontend\modules\pcc\Pcc',
+        ],
         
     ]
 ];
