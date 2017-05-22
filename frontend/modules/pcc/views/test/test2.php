@@ -1,5 +1,10 @@
 <?php
 use yii\helpers\Html;
-echo Html::a('ไป test2',['/pcc/test/test2']);
+use kartik\grid\GridView;
+echo Html::a('ไป test1',['/pcc/test/test1']);
+
+echo GridView::widget([
+    'dataProvider'=>$dataProvider
+]);
 
 
