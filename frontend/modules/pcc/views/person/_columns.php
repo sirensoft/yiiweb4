@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 return [
     [
@@ -10,10 +11,10 @@ return [
         'class' => 'kartik\grid\SerialColumn',
         'width' => '30px',
     ],
-        // [
+    //[
         // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'id',
-    // ],
+        // 'attribute'=>'id',         
+    //],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'prename',
