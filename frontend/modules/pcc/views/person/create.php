@@ -10,9 +10,12 @@ use yii\helpers\Html;
 </div>
 <?php
 $js=<<<JS
+        //alert();
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function(loc){
-        $('#person-lat').val(loc.coords.latitude);
+        
+   
+       $('#person-lat').val(loc.coords.latitude);
         $('#person-lon').val(loc.coords.longitude);
         
   });
