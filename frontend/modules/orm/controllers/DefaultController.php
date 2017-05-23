@@ -30,6 +30,7 @@ class DefaultController extends Controller
     }
     public function actionTest2(){
         return $this->render('test2');
+        
     }
     
 }
