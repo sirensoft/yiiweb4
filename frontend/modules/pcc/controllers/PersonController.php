@@ -50,9 +50,10 @@ class PersonController extends Controller {
                         'allow' => true,
                         'actions' => ['update','delete'],
                         'roles' => ['doctor'],
-                         'matchCallback' => function($rule, $action) {
+                        'matchCallback' => function($rule, $action) {
                             $model = $this->findModel(\Yii::$app->request->get('id'));
-                            return \Yii::$app->user->can('AcessOwn', ['model' => $model, 'attr' => 'created_by']);
+                            return \Yii::$app->user->can('AcessOwn',['model' => $model, 'attr' => 'created_by']);
+                            
                         }
                        
                     ],
