@@ -13,6 +13,7 @@ use yii\helpers\Html;
 use frontend\modules\pcc\models\Ampur;
 use frontend\modules\pcc\models\Tambon;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 /**
  * PersonController implements the CRUD actions for Person model.
@@ -31,6 +32,35 @@ class PersonController extends Controller {
                     'bulk-delete' => ['post'],
                 ],
             ],
+              'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index','create','view','update','delete','bulk-delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['osm'],
+                    ],
+                    [
+                        'actions' => ['view','create'],
+                        'allow' => true,
+                        'roles' => ['doctor'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update','delete'],
+                        'roles' => ['doctor'],
+                         'matchCallback' => function($rule, $action) {
+                            $model = $this->findModel(\Yii::$app->request->get('id'));
+                            return \Yii::$app->user->can('accessOwn', ['model' => $model, 'attr' => 'created_by']);
+                        }
+                       
+                    ],
+                    
+                ],
+            ],
+            
+            
         ];
     }
 
