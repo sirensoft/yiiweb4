@@ -64,7 +64,7 @@ class VisitController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($pid)
+    public function actionCreate($pid=1)
     {
         $model = new Visit();
         $model->person_id =$pid;
