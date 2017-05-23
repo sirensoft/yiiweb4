@@ -3,6 +3,12 @@
 namespace frontend\modules\pcc\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
+use frontend\modules\pcc\models\Province;
+use frontend\modules\pcc\models\Ampur;
+use frontend\modules\pcc\models\Tambon;
 
 /**
  * This is the model class for table "person".
@@ -42,6 +48,7 @@ class Person extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name','lname'],'required'],
             [['birth'], 'safe'],
             [['age'], 'integer'],
             [['prename', 'name', 'lname', 'addr', 'moo', 'prov_code', 'amp_code', 'tmb_code', 'lat', 'lon', 'rapid', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'string', 'max' => 255],
@@ -74,4 +81,37 @@ class Person extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+    
+    public function behaviors() {
+       return [
+           [
+               'class'=>  TimestampBehavior::className(),
+               'value'=> new Expression('NOW()'),
+               
+           ],
+           
+           ['class'=> BlameableBehavior::className()]
+       ];
+    }
+    // join 
+    public function getProvince(){
+       return $this->hasOne(Province::className(),[
+           'changwatcode'=>'prov_code'
+       ]); 
+    }
+    
+    public function getAmpur(){
+        return $this->hasOne(Ampur::className(),[
+            'ampurcodefull'=>'amp_code'
+        ]);
+    }
+    
+    public function getTambon(){
+        return $this->hasOne(Tambon::className(),[
+            'tamboncodefull'=>'tmb_code'
+        ]);
+    }
+    
+    
+    
 }

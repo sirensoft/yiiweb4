@@ -42,6 +42,9 @@ class PersonSearch extends Person
     public function search($params)
     {
         $query = Person::find();
+        $query->joinWith('province')
+                ->joinWith('ampur')
+                ->joinWith('tambon');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -66,7 +69,7 @@ class PersonSearch extends Person
             ->andFilterWhere(['like', 'lname', $this->lname])
             ->andFilterWhere(['like', 'addr', $this->addr])
             ->andFilterWhere(['like', 'moo', $this->moo])
-            ->andFilterWhere(['like', 'prov_code', $this->prov_code])
+            ->andFilterWhere(['like', 'c_province.changwatname', $this->prov_code])
             ->andFilterWhere(['like', 'amp_code', $this->amp_code])
             ->andFilterWhere(['like', 'tmb_code', $this->tmb_code])
             ->andFilterWhere(['like', 'lat', $this->lat])
