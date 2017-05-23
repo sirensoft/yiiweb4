@@ -52,7 +52,7 @@ class PersonController extends Controller {
                         'roles' => ['doctor'],
                          'matchCallback' => function($rule, $action) {
                             $model = $this->findModel(\Yii::$app->request->get('id'));
-                            return \Yii::$app->user->can('accessOwn', ['model' => $model, 'attr' => 'created_by']);
+                            return \Yii::$app->user->can('AcessOwn', ['model' => $model, 'attr' => 'created_by']);
                         }
                        
                     ],
