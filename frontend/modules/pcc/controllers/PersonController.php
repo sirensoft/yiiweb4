@@ -57,6 +57,11 @@ class PersonController extends Controller {
                         }
                        
                     ],
+                    [
+                        'actions' => ['bulk-delete'],
+                        'allow' => true,
+                        'roles' => ['system-admin'],
+                    ],
                     
                 ],
             ],
