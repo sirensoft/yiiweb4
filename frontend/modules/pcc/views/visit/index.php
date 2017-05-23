@@ -8,7 +8,8 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Visits';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label'=>'ทะเบียน','url'=>['/pcc/person/index']];
+$this->params['breadcrumbs'][] = "รายการเยี่ยม";
 ?>
 <div class="visit-index">
 
