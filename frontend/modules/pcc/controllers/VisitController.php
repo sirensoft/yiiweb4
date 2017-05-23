@@ -33,14 +33,16 @@ class VisitController extends Controller
      * Lists all Visit models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($pid)
     {
         $searchModel = new VisitSearch();
+        $searchModel->person_id = $pid;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pid'=>$pid
         ]);
     }
 
@@ -49,10 +51,11 @@ class VisitController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id,$pid)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'pid'=>$pid
         ]);
     }
 
@@ -61,15 +64,17 @@ class VisitController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($pid)
     {
         $model = new Visit();
+        $model->person_id =$pid;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index', 'pid' => $model->person_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'pid'=>$pid
             ]);
         }
     }

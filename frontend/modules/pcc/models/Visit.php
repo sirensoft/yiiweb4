@@ -2,6 +2,9 @@
 
 namespace frontend\modules\pcc\models;
 
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
+use yii\db\Expression;
 use Yii;
 
 /**
@@ -20,21 +23,19 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  */
-class Visit extends \yii\db\ActiveRecord
-{
+class Visit extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'visit';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['person_id', 'height', 'sbp', 'dbp'], 'integer'],
             [['date_visit'], 'safe'],
@@ -46,8 +47,7 @@ class Visit extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'person_id' => 'Person ID',
@@ -63,4 +63,15 @@ class Visit extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
+
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => new Expression('NOW()'),
+            ],
+            ['class' => BlameableBehavior::className()]
+        ];
+    }
+
 }

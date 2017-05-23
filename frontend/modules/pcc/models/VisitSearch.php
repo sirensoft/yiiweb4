@@ -65,14 +65,15 @@ class VisitSearch extends Visit
             'date_visit' => $this->date_visit,
             'weight' => $this->weight,
             'height' => $this->height,
-            'sbp' => $this->sbp,
-            'dbp' => $this->dbp,
+            //'sbp' => $this->sbp,
+            //'dbp' => $this->dbp,
         ]);
 
         $query->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by])
             ->andFilterWhere(['like', 'created_at', $this->created_at])
+            ->andFilterWhere(['like', 'concat("sbp","dbp")', $this->sbp])
             ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
 
         return $dataProvider;
