@@ -68,7 +68,7 @@ use yii\helpers\Url;
         'pluginOptions' => [
             'depends' => ['prov_code'],
             'placeholder' => 'เลือก...',
-            'url' => Url::to(['/visit/default/getamp'])
+            'url' => Url::to(['/pcc/default/getamp'])
         ]
     ]);
     ?>
@@ -80,7 +80,7 @@ use yii\helpers\Url;
         'pluginOptions' => [
             'depends' => ['amp_code'],
             'placeholder' => 'เลือก...',
-            'url' => Url::to(['/visit/default/gettmb'])
+            'url' => Url::to(['/pcc/default/gettmb'])
         ]
     ]);
     ?>
