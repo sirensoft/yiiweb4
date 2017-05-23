@@ -13,12 +13,13 @@ return [
     ],
     [
          'class'=>'\kartik\grid\DataColumn',
-         'attribute'=>'id', 
+         'attribute'=>'rapid', 
          'label'=>'',
          'format'=>'Html',
          'contentOptions'=>function($model){
             return ['style'=>"background-color:$model->rapid"];
-         }
+         },
+         'filter'=>['green'=>'green','yellow'=>'yellow']
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
