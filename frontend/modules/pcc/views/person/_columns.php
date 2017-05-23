@@ -11,10 +11,15 @@ return [
         'class' => 'kartik\grid\SerialColumn',
         'width' => '30px',
     ],
-    //[
-        // 'class'=>'\kartik\grid\DataColumn',
-        // 'attribute'=>'id',         
-    //],
+    [
+         'class'=>'\kartik\grid\DataColumn',
+         'attribute'=>'id', 
+         'label'=>'',
+         'format'=>'Html',
+         'contentOptions'=>function($model){
+            return ['style'=>"background-color:$model->rapid"];
+         }
+    ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'prename',
