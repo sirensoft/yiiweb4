@@ -138,7 +138,7 @@ class PersonController extends Controller {
     public function actionUpdate($id) {
         $request = Yii::$app->request;
         $model = $this->findModel($id);
-
+        // เพิ่ม
         $amp = Ampur::find()
                 ->select('ampurcodefull as id,ampurname as name')
                 ->where(['changwatcode' => $model->prov_code])
@@ -152,6 +152,7 @@ class PersonController extends Controller {
                 ->asArray()
                 ->all();
         $tmb = ArrayHelper::map($tmb, 'id', 'name');
+        //จบเพิ่ม
 
         if ($request->isAjax) {
             /*
