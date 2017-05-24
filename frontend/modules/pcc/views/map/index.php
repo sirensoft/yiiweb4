@@ -42,6 +42,21 @@ foreach ($model as $value) {
 
 $person_point = json_encode($peron_point);
 //print_r($peron_point);
+use frontend\modules\pcc\models\TambonGis;
+$model = TambonGis::find()->asArray()->all();
+$tambon_pol=[];
+
+foreach ($model as $value) {
+    $tambon_pol[]=[
+        'type'=>'Feature',
+        'properties'=>[],
+        'geometry'=>[
+            'type' => 'MultiPolygon',
+            'coordinates' => json_decode($value['COORDINATES']),            
+        ]
+    ];    
+}
+$tambon_pol = json_encode($tambon_pol);
 
 // script
 $js=<<<JS
@@ -121,6 +136,9 @@ var home= L.geoJson($person_point,{
         
     }      
 }).addTo(_group1);
+
+var tambon = L.geoJson($tambon_pol).addTo(map);
+
 map.fitBounds(home.getBounds());
         
 marker.addTo(_group2);
