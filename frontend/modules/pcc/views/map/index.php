@@ -72,7 +72,9 @@ var baseLayers = {
 
         
 var marker = L.marker(new L.LatLng(16.324,100.456), {
-    
+     icon: L.mapbox.marker.icon({
+        'marker-color': 'ff8888'
+      }),
     draggable: true
 });
 
@@ -86,10 +88,29 @@ marker.on("dragend",function(e){
 
 var _group1 = L.layerGroup().addTo(map);
 var _group2 = L.layerGroup();
-    
+
+var ic_green =L.mapbox.marker.icon({'marker-color': '#67b252'});
+var ic_yellow =L.mapbox.marker.icon({'marker-color': '#ffff80'});
+var ic_red =L.mapbox.marker.icon({'marker-color': '#e45664'});
+var ic_white =L.mapbox.marker.icon({'marker-color': '#ffffff'});
+        
 L.geoJson($person_point,{
     onEachFeature:function(feature,layer){
         layer.bindPopup(feature.properties.NAME+' '+feature.properties.LNAME);
+        switch(feature.properties.COLOR){ 
+            case 'red':
+                layer.setIcon(ic_red);
+                break;
+            case 'yellow':
+                layer.setIcon(ic_yellow);
+                break;
+            case 'green':
+                layer.setIcon(ic_green);
+                break;
+            default:
+                layer.setIcon(ic_white);
+        }
+        
     }      
 }).addTo(_group1);
         
