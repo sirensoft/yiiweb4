@@ -59,22 +59,19 @@ $this->params['breadcrumbs'][] = "รายการเยี่ยม";
     <div id="container"></div>
     <?php
     $raw = $dataProvider->getModels();
-    //print_r($raw);
-    $data = [];
-    foreach ($raw as $value) {
-       $data[]= $value->date_visit;           
-       
-    }
-    $day = json_encode($data);
-    //print_r($day);
+   
+    $day = [];
+    $weight =[];
     
-    $data = [];
     foreach ($raw as $value) {
-       $data[]= (int)($value->weight);           
+       $day[]= $value->date_visit; 
+       $weight[]= (int)($value->weight);        
        
     }
-    $weight = json_encode($data);
-    print_r($weight);
+    $day = json_encode($day);
+    $weight = json_encode($weight);
+    
+    //print_r($weight);
     
     
     //$data1 = ArrayHelper::map($raw,'date_visit','weight');
@@ -82,7 +79,9 @@ $this->params['breadcrumbs'][] = "รายการเยี่ยม";
     
 $js=<<<JS
  Highcharts.chart('container', {
-
+    credits: {
+            enabled: false
+    },
     title: {
         text: 'Title'
     },
@@ -98,7 +97,10 @@ $js=<<<JS
     yAxis: {
         title: {
             text: 'นำหนัก(กก.)'
-        }
+        },
+         min: 10,
+         max: 200,
+         tickInterval: 10,
     },
     legend: {
         layout: 'vertical',
@@ -108,7 +110,8 @@ $js=<<<JS
 
     series: [{
         name: 'น้ำหนัก',
-        data: $weight
+        data: $weight,
+        color:'red'
     }]
 
 });   

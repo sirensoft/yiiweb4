@@ -40,9 +40,21 @@ Highcharts.chart('container', {
     yAxis: {
         title: {
             text: 'Total percent market share'
-        }
+        },
+        tickInterval: 2,
+        min: 0,
+        max: 200,
 
     },
+        
+         plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: true
+            }
+        },
     series:[{
         name: 'อำเภอ',
         colorByPoint: true,
