@@ -23,8 +23,8 @@ foreach ($model as $value) {
                 'LNAME'=>$value['lname']
             ],
             'geometry'=>[
-            'type'=>'Point',
-            'coordinates'=>[$value['lon']*1,$value['lat']]
+                'type'=>'Point',
+                'coordinates'=>[$value['lon']*1,$value['lat']]
             ]    
         ];  
     }
