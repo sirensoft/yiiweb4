@@ -139,7 +139,7 @@ var home= L.geoJson($person_point,{
 
 var tambon = L.geoJson($tambon_pol).addTo(map);
 
-map.fitBounds(home.getBounds());
+map.fitBounds(tambon.getBounds());
         
 marker.addTo(_group2);
         
