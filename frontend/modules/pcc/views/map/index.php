@@ -2,6 +2,13 @@
 //เรียก lib
 $this->registerCssFile('//api.mapbox.com/mapbox.js/v3.1.1/mapbox.css', ['async' => false, 'defer' => true]);
 $this->registerJsFile('//api.mapbox.com/mapbox.js/v3.1.1/mapbox.js', ['position' => $this::POS_HEAD]);
+
+//ค้น
+$this->registerCssFile('./lib-gis/leaflet-search.min.css', ['async' => false, 'defer' => true]);
+$this->registerCssFile('./lib-gis/leaflet.label.css', ['async' => false, 'defer' => true]);
+$this->registerJsFile('./lib-gis/leaflet-search.min.js', ['position' => $this::POS_HEAD]);
+$this->registerJsFile('./lib-gis/leaflet.label.js', ['position' => $this::POS_HEAD]);
+
 ?>
 <h4>แผนที่บ้านผู้ป่วย</h4>
 <div id='map' style="width: 100%;height: 75vh;">
@@ -21,7 +28,8 @@ foreach ($model as $value) {
             'properties'=>[
                 'NAME'=>$value['name'],
                 'LNAME'=>$value['lname'],
-                'COLOR'=>$value['rapid']
+                'COLOR'=>$value['rapid'],
+                'SEARCH_TEXT'=> $value['name']
             ],
             'geometry'=>[
                 'type'=>'Point',
@@ -94,7 +102,7 @@ var ic_yellow =L.mapbox.marker.icon({'marker-color': '#ffff80'});
 var ic_red =L.mapbox.marker.icon({'marker-color': '#e45664'});
 var ic_white =L.mapbox.marker.icon({'marker-color': '#ffffff'});
         
-L.geoJson($person_point,{
+var home= L.geoJson($person_point,{
     onEachFeature:function(feature,layer){
         layer.bindPopup(feature.properties.NAME+' '+feature.properties.LNAME);
         switch(feature.properties.COLOR){ 
@@ -113,6 +121,7 @@ L.geoJson($person_point,{
         
     }      
 }).addTo(_group1);
+map.fitBounds(home.getBounds());
         
 marker.addTo(_group2);
         
@@ -122,7 +131,24 @@ var overlays= {
 };        
         
 L.control.layers(baseLayers,overlays).addTo(map);
-        
+ 
+//search
+    var searchControl = new L.Control.Search({
+		layer: home,
+		propertyName: 'SEARCH_TEXT',
+		circleLocation: false,
+		
+    });
+    searchControl.on('search:locationfound', function(e) {
+				
+		if(e.layer._popup)e.layer.openPopup();
+    }).on('search:collapsed', function(e) {
+		pt_layer.eachLayer(function(layer) {	
+			pt_layer.resetStyle(layer);
+		});	
+    });
+    map.addControl( searchControl );  
+ //end-search
         
 JS;
 $this->registerJs($js);
