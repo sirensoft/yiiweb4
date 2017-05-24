@@ -20,7 +20,8 @@ foreach ($model as $value) {
             'type'=>'Feature',
             'properties'=>[
                 'NAME'=>$value['name'],
-                'LNAME'=>$value['lname']
+                'LNAME'=>$value['lname'],
+                'COLOR'=>$value['rapid']
             ],
             'geometry'=>[
                 'type'=>'Point',
@@ -30,30 +31,6 @@ foreach ($model as $value) {
     }
 }
 
-/*
-$peron_point[] = [
-    'type'=>'Feature',
-    'properties'=>[
-        'NAME'=>'นาย ก',
-        'LNAME'=>'ใจดี'
-    ],
-    'geometry'=>[
-        'type'=>'Point',
-        'coordinates'=>[100,16]
-    ]    
-];
-
-$peron_point[] = [
-    'type'=>'Feature',
-    'properties'=>[
-        'NAME'=>'นาย ข',
-        'LNAME'=>'ใจดี'
-    ],
-    'geometry'=>[
-        'type'=>'Point',
-        'coordinates'=>[100.145,16.014]
-    ]    
-];*/
 
 $person_point = json_encode($peron_point);
 //print_r($peron_point);
@@ -92,21 +69,38 @@ var baseLayers = {
         "Google ภูมิประเทศ":googleTerrain
  };
 // base map 
-L.control.layers(baseLayers).addTo(map);
+
         
 var marker = L.marker(new L.LatLng(16.324,100.456), {
     
     draggable: true
 });
 
-marker.addTo(map);
+//marker.addTo(map);
         
 marker.on("dragend",function(e){
     var pos = e.target.getLatLng();
     this.bindPopup(pos.toString()).openPopup();
 });
         
-L.geoJson($person_point).addTo(map);
+
+var _group1 = L.layerGroup().addTo(map);
+var _group2 = L.layerGroup();
+    
+L.geoJson($person_point,{
+    onEachFeature:function(feature,layer){
+        layer.bindPopup(feature.properties.NAME+' '+feature.properties.LNAME);
+    }      
+}).addTo(_group1);
+        
+marker.addTo(_group2);
+        
+var overlays= {
+  "บ้านผู้ป่วย":_group1,
+  "ลากตำแหน่ง":_group2
+};        
+        
+L.control.layers(baseLayers,overlays).addTo(map);
         
         
 JS;
