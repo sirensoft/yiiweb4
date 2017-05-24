@@ -24,7 +24,7 @@ foreach ($model as $value) {
             ],
             'geometry'=>[
                 'type'=>'Point',
-                'coordinates'=>[$value['lon']*1,$value['lat']]
+                'coordinates'=>[$value['lon']*1,$value['lat']*1]
             ]    
         ];  
     }
