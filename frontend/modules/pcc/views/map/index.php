@@ -43,7 +43,7 @@ foreach ($model as $value) {
 $person_point = json_encode($peron_point);
 //print_r($peron_point);
 use frontend\modules\pcc\models\TambonGis;
-$model = TambonGis::find()->asArray()->all();
+$model = TambonGis::find()->all();
 $tambon_pol=[];
 
 foreach ($model as $value) {
@@ -51,7 +51,7 @@ foreach ($model as $value) {
         'type'=>'Feature',
         'properties'=>[
             'fill'=> call_user_func(function()use($value){
-                 if($value['AMP_CODE']%2==0)  return '#4169e1';
+                 if($value->AMP_CODE%2==0)  return '#4169e1';
                  if($value['AMP_CODE']%3==0)  return '#ffd700';
                  return '#00ff7f';
             }),
