@@ -49,7 +49,14 @@ $tambon_pol=[];
 foreach ($model as $value) {
     $tambon_pol[]=[
         'type'=>'Feature',
-        'properties'=>[],
+        'properties'=>[
+            'fill'=> call_user_func(function()use($value){
+                 if($value['AMP_CODE']%2==0)  return '#4169e1';
+                 if($value['AMP_CODE']%3==0)  return '#ffd700';
+                 return '#00ff7f';
+            }),
+             'title'=>"ต.".$value['TAM_NAMT']
+        ],
         'geometry'=>[
             'type' => 'MultiPolygon',
             'coordinates' => json_decode($value['COORDINATES']),            
@@ -137,9 +144,9 @@ var home= L.geoJson($person_point,{
     }      
 }).addTo(_group1);
 
-var tambon = L.geoJson($tambon_pol).addTo(map);
-
-map.fitBounds(tambon.getBounds());
+var tambonLayer = L.mapbox.featureLayer();
+tambonLayer.setGeoJSON($tambon_pol).addTo(map);
+map.fitBounds(tambonLayer.getBounds());
         
 marker.addTo(_group2);
         
