@@ -117,7 +117,8 @@ marker.on("dragend",function(e){
         
 
 var _group1 = L.layerGroup().addTo(map);
-var _group2 = L.layerGroup();
+var _group2 = L.layerGroup().addTo(map);
+var _group3 = L.layerGroup();
 
 var ic_green =L.mapbox.marker.icon({'marker-color': '#67b252'});
 var ic_yellow =L.mapbox.marker.icon({'marker-color': '#ffff80'});
@@ -145,14 +146,16 @@ var home= L.geoJson($person_point,{
 }).addTo(_group1);
 
 var tambonLayer = L.mapbox.featureLayer();
-tambonLayer.setGeoJSON($tambon_pol).addTo(map);
+tambonLayer.setGeoJSON($tambon_pol).addTo(_group2);
 map.fitBounds(tambonLayer.getBounds());
         
-marker.addTo(_group2);
+marker.addTo(_group3);
         
 var overlays= {
   "บ้านผู้ป่วย":_group1,
-  "ลากตำแหน่ง":_group2
+  "ตำบล":_group2,
+  "ลากตำแหน่ง":_group3
+  
 };        
         
 L.control.layers(baseLayers,overlays).addTo(map);
