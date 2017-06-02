@@ -3,8 +3,7 @@
 namespace frontend\modules\mapbox\controllers;
 
 use yii\web\Controller;
-use frontend\modules\pcc\models\TambonGis;
-use yii\helpers\Json;
+
 
 /**
  * Default controller for the `mapbox` module
@@ -38,6 +37,7 @@ class DefaultController extends Controller {
                 "marker-size" => "large",//ขนาด
                 'title' => 'ไตเติ้ล',
                 'description'=>'รายละเอียด....',
+                 "marker-symbol" => "h"//สัญลักษณ์
             ],
             'geometry' => [
                 'type' => 'Point',
@@ -45,7 +45,7 @@ class DefaultController extends Controller {
             ]
         ];
         
-        return Json::encode($home_point);
+        return json_encode($home_point);
     }
 
     public function actionMap() {
@@ -66,7 +66,7 @@ class DefaultController extends Controller {
             ]
         ];
         
-        $peron_point = Json::encode($peron_point);
+        $peron_point = json_encode($peron_point);
         return $this->renderPartial('map', [
                     'person_point' => $peron_point
         ]);

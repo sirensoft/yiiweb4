@@ -22,7 +22,7 @@ $route_home = Url::to(['/mapbox/default/layer-home']);
         <div id='map'></div>
         <script>
             L.mapbox.accessToken = 'pk.eyJ1IjoidGVobm5uIiwiYSI6ImNpZzF4bHV4NDE0dTZ1M200YWxweHR0ZzcifQ.lpRRelYpT0ucv1NN08KUWQ';
-            var map = L.mapbox.map('map').setView([16, 100], 8);
+            var map = L.mapbox.map('map').setView([16, 100], 6);
             //base map
             var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
                 maxZoom: 20,
@@ -52,18 +52,50 @@ $route_home = Url::to(['/mapbox/default/layer-home']);
                 "Google Street": googleStreet.addTo(map),
                 "Google ภูมิประเทศ": googleTerrain
             };// base map 
-            
-            //var _group1 = L.layerGroup().addTo(map);
-            
-            var person = L.mapbox.featureLayer().setGeoJSON(<?= $person_point ?>).addTo(map);
-            var home  = L.mapbox.featureLayer().loadURL('<?=$route_home?>').addTo(map);
+
+            var _group1 = L.layerGroup().addTo(map);
+
+            var person = L.mapbox.featureLayer().setGeoJSON(<?= $person_point ?>).addTo(_group1);
+
+            var home = L.mapbox.featureLayer()
+                    .loadURL('<?= $route_home ?>')
+                    .on('ready', function (e) {
+                        //map.fitBounds(home.getBounds());
+
+                        e.target.eachLayer(function (layer) {                           
+                            console.log(layer.properties);
+                        });
+                    }).addTo(_group1);
+
+
+            var github= L.mapbox.featureLayer().addTo(map);
             
             var overlays = {
                 "person": person,
-                "home":home
+                "home": home,
+                "github":github
             };
 
-            L.control.layers(baseLayers,overlays).addTo(map);
+            L.control.layers(baseLayers, overlays).addTo(map);
+           
+           
+            
+            $(function(){
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/vnd.github.v3.raw'
+                    },
+                    xhrFields: {
+                        withCredentials: false
+                    },
+                    dataType: 'json',
+                    url: 'https://api.github.com/repos/mapbox/mapbox.js/contents/test/manual/example.geojson',
+                    success: function (geojson) {
+                        // On success add fetched data to the map.
+                        github.setGeoJSON(geojson);
+                    }
+                });
+            });
 
         </script>
     </body>
