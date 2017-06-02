@@ -15,20 +15,35 @@ class DefaultController extends Controller {
         return $this->render('index');
     }
 
-    public function actionLayerPerson() {
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        //$peron_point = [];
-        $peron_point[] = [
+    public function actionLayerHome() {
+        //\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+               
+        $home_point[] = [
             'type' => 'Feature',
             'properties' => [
-                'NAME' => 'นาย ก.'
+                'NAME' => 'นาย ก.',
+                'marker-color' => "#00ff00",//สี
+                "marker-size" => "large",//ขนาด
             ],
             'geometry' => [
                 'type' => 'Point',
-                'coordinates' => [100.0124456, 16.14523]
+                'coordinates' => [99.9124456, 16.14523]
             ]
         ];
-        return Json::encode($peron_point);
+          $home_point[] = [
+            'type' => 'Feature',
+            'properties' => [
+                'NAME' => 'นาย ข.',
+                'marker-color' => "#3399ff",//สี
+                "marker-size" => "large",//ขนาด
+            ],
+            'geometry' => [
+                'type' => 'Point',
+                'coordinates' => [100.1124456, 16.04523]
+            ]
+        ];
+        
+        return Json::encode($home_point);
     }
 
     public function actionMap() {
