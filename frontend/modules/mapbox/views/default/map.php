@@ -2,7 +2,7 @@
 
 use yii\helpers\Url;
 
-$route_home = Url::to(['/mapbox/default/layer-home']);
+$route_home = Url::to(['/mapbox/default/point-home']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,25 +62,28 @@ $route_home = Url::to(['/mapbox/default/layer-home']);
                     .on('ready', function (e) {
                         //map.fitBounds(home.getBounds());
 
-                        e.target.eachLayer(function (layer) {                           
-                            console.log(layer.properties);
+                        home.eachLayer(function (layer) {
+                            console.log(layer.feature.properties);
+                            if (!layer.feature.properties.title && !layer.feature.properties.description) {
+                                layer.bindPopup(layer.feature.properties.NAME);
+                            }
                         });
                     }).addTo(_group1);
 
 
-            var github= L.mapbox.featureLayer().addTo(map);
-            
+            var github = L.mapbox.featureLayer().addTo(map);
+
             var overlays = {
                 "person": person,
                 "home": home,
-                "github":github
+                "github": github
             };
 
             L.control.layers(baseLayers, overlays).addTo(map);
-           
-           
-            
-            $(function(){
+
+
+
+            $(function () {
                 $.ajax({
                     headers: {
                         'Accept': 'application/vnd.github.v3.raw'

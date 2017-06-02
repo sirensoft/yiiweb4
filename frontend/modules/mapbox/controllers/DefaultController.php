@@ -14,7 +14,7 @@ class DefaultController extends Controller {
         return $this->render('index');
     }
 
-    public function actionLayerHome() {
+    public function actionPointHome() {
         //\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
                
         $home_point[] = [
@@ -35,7 +35,7 @@ class DefaultController extends Controller {
                 'NAME' => 'นาย ข.',
                 'marker-color' => "#3399ff",//สี
                 "marker-size" => "large",//ขนาด
-                'title' => 'ไตเติ้ล',
+                //'title' => 'ไตเติ้ล',
                 'description'=>'รายละเอียด....',
                  "marker-symbol" => "h"//สัญลักษณ์
             ],
