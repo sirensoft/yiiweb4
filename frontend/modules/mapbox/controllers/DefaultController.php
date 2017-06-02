@@ -36,6 +36,8 @@ class DefaultController extends Controller {
                 'NAME' => 'นาย ข.',
                 'marker-color' => "#3399ff",//สี
                 "marker-size" => "large",//ขนาด
+                'title' => 'ไตเติ้ล',
+                'description'=>'รายละเอียด....',
             ],
             'geometry' => [
                 'type' => 'Point',
