@@ -59,6 +59,8 @@ return [
         'pcc' => [
             'class' => 'frontend\modules\pcc\Pcc',
         ],
-        
+        'mapbox' => [
+            'class' => 'frontend\modules\mapbox\Mapbox',
+        ],
     ]
 ];
