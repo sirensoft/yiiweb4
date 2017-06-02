@@ -59,10 +59,8 @@ $route_home = Url::to(['/mapbox/default/point-home']);
 
             var home = L.mapbox.featureLayer()
                     .loadURL('<?= $route_home ?>')
-                    .on('ready', function (e) {
-                        //map.fitBounds(home.getBounds());
-
-                        home.eachLayer(function (layer) {
+                    .on('ready', function (e) {                        
+                       home.eachLayer(function (layer) {
                             console.log(layer.feature.properties);
                             if (!layer.feature.properties.title && !layer.feature.properties.description) {
                                 layer.bindPopup(layer.feature.properties.NAME);
