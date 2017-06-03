@@ -3,6 +3,8 @@
 use yii\helpers\Url;
 
 $route_home = Url::to(['/mapbox/default/point-home']);
+$tambon = $this->render('./tambon_plk_utf8.geojson');
+//$this->registerJs($tambon);
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,10 +61,10 @@ $route_home = Url::to(['/mapbox/default/point-home']);
 
             var home = L.mapbox.featureLayer()
                     .loadURL('<?= $route_home ?>')
-                    .on('ready', function (e) {                        
-                       home.eachLayer(function (layer) {
+                    .on('ready', function (e) {
+                        home.eachLayer(function (layer) {
                             console.log(layer.feature.properties);
-                            if (!layer.feature.properties.title && !layer.feature.properties.description) {
+                            if (!layer.feature.properties.title && !layer.feature.properties.description) {                                
                                 layer.bindPopup(layer.feature.properties.NAME);
                             }
                         });
@@ -71,6 +73,21 @@ $route_home = Url::to(['/mapbox/default/point-home']);
 
             var github = L.mapbox.featureLayer().addTo(map);
 
+            var tambon = L.mapbox.featureLayer()
+                    .setGeoJSON(<?= $tambon ?>)
+                    .addTo(map);
+            tambon.eachLayer(function (layer) {
+                var fillColor = "#B8B8B8"
+                if (layer.feature.properties.AMP_CODE == '05') {
+                    fillColor = "#c78432";
+                } else if (layer.feature.properties.AMP_CODE >= '07') {
+                    fillColor = "#F9A63F";
+                }
+                layer.setStyle({
+                    fillColor: fillColor
+                });
+            });
+
             var overlays = {
                 "person": person,
                 "home": home,
@@ -78,8 +95,6 @@ $route_home = Url::to(['/mapbox/default/point-home']);
             };
 
             L.control.layers(baseLayers, overlays).addTo(map);
-
-
 
             $(function () {
                 $.ajax({
