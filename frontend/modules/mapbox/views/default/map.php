@@ -50,7 +50,7 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 "OSM ถนน": L.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png'),
                 "OSM ดาวเทียม": L.mapbox.tileLayer('mapbox.satellite'),
                 "Google Hybrid": googleHybrid,
-                "Google Street": googleStreet.addTo(map),
+                "Google Street": googleStreet,
                 "Google ภูมิประเทศ": googleTerrain
             }; // base map 
 
@@ -128,10 +128,17 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 transparent: true,
                 layers: '5'
             });
-            var thaichot = L.tileLayer.wms('http://gservices.gistda.or.th/public/L02_SPOT5_GISTDA_2d5m/wms',{
-                format: 'image/png',
+            
+            var longdo = L.tileLayer.wms('http://dt.gistda.or.th/wms/theos?version=1.3.0',{
+                format:'image/png',
                 transparent: true,
+                layers:'1',
+                
+                //srs:"EPSG:4326"
+                
             });
+            
+        
 
 
             //wms
@@ -143,7 +150,8 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 "github": github,
                 "wms1": nexrad,
                 "precipitation":precipitation,
-                "thaichot":thaichot
+                "longdo":longdo
+                
             };
             L.control.layers(baseLayers, overlays).addTo(map);
             $(function () {
