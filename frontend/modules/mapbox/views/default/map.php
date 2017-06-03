@@ -128,6 +128,10 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 transparent: true,
                 layers: '5'
             });
+            var thaichot = L.tileLayer.wms('http://gservices.gistda.or.th/public/L02_SPOT5_GISTDA_2d5m/wms',{
+                format: 'image/png',
+                transparent: true,
+            });
 
 
             //wms
@@ -139,6 +143,7 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 "github": github,
                 "wms1": nexrad,
                 "precipitation":precipitation,
+                "thaichot":thaichot
             };
             L.control.layers(baseLayers, overlays).addTo(map);
             $(function () {
