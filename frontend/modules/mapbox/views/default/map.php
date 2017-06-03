@@ -64,7 +64,7 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                     .on('ready', function (e) {
                         home.eachLayer(function (layer) {
                             console.log(layer.feature.properties);
-                            if (!layer.feature.properties.title && !layer.feature.properties.description) {                                
+                            if (!layer.feature.properties.title && !layer.feature.properties.description) {
                                 layer.bindPopup(layer.feature.properties.NAME);
                             }
                         });
@@ -78,7 +78,7 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                     .addTo(map);
             tambon.eachLayer(function (layer) {
                 var fillColor = "#B8B8B8"
-                if (layer.feature.properties.AMP_CODE == '05') {
+                if (layer.feature.properties.AMP_CODE <= '05') {
                     fillColor = "#c78432";
                 } else if (layer.feature.properties.AMP_CODE >= '07') {
                     fillColor = "#F9A63F";
@@ -86,6 +86,20 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 layer.setStyle({
                     fillColor: fillColor
                 });
+
+            });
+            tambon.on('mouseover', function (e) {
+                var color = "#ffd700";
+                e.layer.setStyle({
+                    fillColor: color,                    
+                });
+                e.layer.bindPopup(e.layer.feature.properties.TAM_NAMT);
+                e.layer.openPopup();
+            });
+            tambon.on('mouseout', function (e) {
+                //e.layer.resetStyle();
+                //e.layer.resetStyle(e.target);
+                e.layer.closePopup();
             });
 
             var overlays = {
