@@ -4,7 +4,6 @@ use yii\helpers\Url;
 
 $route_home = Url::to(['/mapbox/default/point-home']);
 $tambon = $this->render('./tambon_plk_utf8.geojson');
-//$this->registerJs($tambon);
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,17 +33,17 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 maxZoom: 20,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
             });
-
             var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
                 maxZoom: 20,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
             });
-
             var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
                 maxZoom: 20,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
             });
             var osm_street = L.mapbox.tileLayer('mapbox.streets');
+
+
 
             var baseLayers = {
                 "OSM ภูมิประเทศ": osm_street,
@@ -53,12 +52,12 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 "Google Hybrid": googleHybrid,
                 "Google Street": googleStreet.addTo(map),
                 "Google ภูมิประเทศ": googleTerrain
-            };// base map 
+            }; // base map 
+
+
 
             var _group1 = L.layerGroup().addTo(map);
-
             var person = L.mapbox.featureLayer().setGeoJSON(<?= $person_point ?>).addTo(_group1);
-
             var home = L.mapbox.featureLayer()
                     .loadURL('<?= $route_home ?>')
                     .on('ready', function (e) {
@@ -69,47 +68,79 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                             }
                         });
                     }).addTo(_group1);
-
-
             var github = L.mapbox.featureLayer().addTo(map);
-
             var tambon = L.mapbox.featureLayer()
                     .setGeoJSON(<?= $tambon ?>)
                     .addTo(map);
+            map.fitBounds(tambon.getBounds());
             tambon.eachLayer(function (layer) {
-                var fillColor = "#B8B8B8"
+                var fillColor = "#0000ff"
                 if (layer.feature.properties.AMP_CODE <= '05') {
-                    fillColor = "#c78432";
+                    fillColor = "#00ff7f";
                 } else if (layer.feature.properties.AMP_CODE >= '07') {
-                    fillColor = "#F9A63F";
+                    fillColor = "#ff4444";
                 }
                 layer.setStyle({
-                    fillColor: fillColor
+                    fillColor: fillColor,
+                    weight: 2,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '3',
+                    fillOpacity: 0.7,
                 });
+                layer.on('mouseover', function (e) {
+                    var color = "#ffd700";
+                    layer.setStyle({
+                        fillColor: color,
+                        weight: 5,
+                        color: '#666',
+                    });
+                });
+                layer.on('mouseout', function (e) {
+                    layer.setStyle({
+                        fillColor: fillColor,
+                        weight: 2,
+                        opacity: 1,
+                        color: 'white',
+                        dashArray: '3',
+                        fillOpacity: 0.7,
+                    });
 
-            });
-            tambon.on('mouseover', function (e) {
-                var color = "#ffd700";
-                e.layer.setStyle({
-                    fillColor: color,                    
+                    layer.closePopup();
                 });
-                e.layer.bindPopup(e.layer.feature.properties.TAM_NAMT);
-                e.layer.openPopup();
+                layer.on('click', function (e) {
+                    map.fitBounds(layer.getBounds());
+                    layer.bindPopup(layer.feature.properties.TAM_NAMT);
+                    layer.openPopup();
+                });
             });
-            tambon.on('mouseout', function (e) {
-                //e.layer.resetStyle();
-                //e.layer.resetStyle(e.target);
-                e.layer.closePopup();
+
+            //wms
+
+            var nexrad = L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+                layers: 'nexrad-n0r-900913',
+                format: 'image/png',
+                transparent: true,
+                attribution: "Weather data © 2012 IEM Nexrad"
             });
+            var precipitation = L.tileLayer.wms('http://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WmsServer', {
+                format: 'image/png',
+                transparent: true,
+                layers: '5'
+            });
+
+
+            //wms
 
             var overlays = {
+                "tambon": tambon,
                 "person": person,
                 "home": home,
-                "github": github
+                "github": github,
+                "wms1": nexrad,
+                "precipitation":precipitation,
             };
-
             L.control.layers(baseLayers, overlays).addTo(map);
-
             $(function () {
                 $.ajax({
                     headers: {
@@ -126,6 +157,8 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                     }
                 });
             });
+
+
 
         </script>
     </body>
