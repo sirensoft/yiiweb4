@@ -42,38 +42,42 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
             });
             var osm_street = L.mapbox.tileLayer('mapbox.streets');
+            var contry = L.mapbox.tileLayer('examples.map-zmy97flj');
 
 
 
             var baseLayers = {
-                "OSM ภูมิประเทศ": osm_street,
+                "OSM ภูมิประเทศ": osm_street.addTo(map),
                 "OSM ถนน": L.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png'),
                 "OSM ดาวเทียม": L.mapbox.tileLayer('mapbox.satellite'),
                 "Google Hybrid": googleHybrid,
                 "Google Street": googleStreet,
-                "Google ภูมิประเทศ": googleTerrain
+                "Google ภูมิประเทศ": googleTerrain,
+                "contry": contry
+
             }; // base map 
 
 
 
-            var _group1 = L.layerGroup().addTo(map);
+            var _group1 = L.featureGroup();
             var person = L.mapbox.featureLayer().setGeoJSON(<?= $person_point ?>).addTo(_group1);
             var home = L.mapbox.featureLayer()
                     .loadURL('<?= $route_home ?>')
-                    .on('ready', function (e) {
+                    .on('ready', function () {
                         home.eachLayer(function (layer) {
-                            console.log(layer.feature.properties);
+                            //console.log(layer.feature.properties);
                             if (!layer.feature.properties.title && !layer.feature.properties.description) {
                                 layer.bindPopup(layer.feature.properties.NAME);
                             }
                         });
                     }).addTo(_group1);
-            var github = L.mapbox.featureLayer().addTo(map);
+            var github = L.mapbox.featureLayer();
             var tambon = L.mapbox.featureLayer()
                     .setGeoJSON(<?= $tambon ?>)
-                    .addTo(map);
+                    .addTo(_group1);
             map.fitBounds(tambon.getBounds());
             tambon.eachLayer(function (layer) {
+                //layer.bindTooltip(layer.feature.properties.TAM_NAMT);
                 var fillColor = "#0000ff"
                 if (layer.feature.properties.AMP_CODE <= '05') {
                     fillColor = "#00ff7f";
@@ -128,17 +132,38 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 transparent: true,
                 layers: '5'
             });
-            
-            var longdo = L.tileLayer.wms('http://dt.gistda.or.th/wms/theos?version=1.3.0',{
-                format:'image/png',
+
+            var longdo = L.tileLayer.wms('http://dt.gistda.or.th/wms/theos?version=1.3.0', {
+                format: 'image/png',
                 transparent: true,
-                layers:'1',
-                
+                layers: '1',
                 //srs:"EPSG:4326"
-                
+
             });
-            
-        
+
+            var traffic = L.tileLayer('https://1.traffic.maps.cit.api.here.com/maptile/2.1/flowtile/newest/normal.day/{z}/{x}/{y}/256/png8?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg').addTo(map);
+
+            var base_url = 'http://rain.tvis.in.th/';
+            var radars = '["NongKham","KKN"]';
+            var latlng_topright = '["15.09352819610486,101.7458188486135","18.793550,105.026265"]';
+            var latlng_bottomleft = '["12.38196058009694,98.97206140040996","14.116192,100.541459"]';
+            var d = new Date();
+            var time = d.getTime();
+            console.log(time);
+            radars = JSON.parse(radars);
+            latlng_topright = JSON.parse(latlng_topright);
+            latlng_bottomleft = JSON.parse(latlng_bottomleft);
+            var traffic = L.tileLayer('https://1.traffic.maps.cit.api.here.com/.../{y}/256/png8...',).addTo(map);
+
+            var rain = L.layerGroup().addTo(map);
+            $.each(radars, function (key, value) {
+                var top_right = latlng_topright[key].split(",");
+                var bottom_left = latlng_bottomleft[key].split(",");
+                console.log(base_url + "/output/" + value + ".png?" + time);
+                var imageUrl = base_url + "/output/" + value + ".png?" + time,
+                        imageBounds = [[top_right[0], top_right[1]], [bottom_left[0], bottom_left[1]]];
+                L.imageOverlay(imageUrl, imageBounds).addTo(rain).setOpacity(0.95);
+            });
 
 
             //wms
@@ -149,9 +174,12 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 "home": home,
                 "github": github,
                 "wms1": nexrad,
-                "precipitation":precipitation,
-                "longdo":longdo
-                
+                "precipitation": precipitation,
+                "longdo": longdo,
+                "traffic": traffic,
+                "ฝน": rain
+
+
             };
             L.control.layers(baseLayers, overlays).addTo(map);
             $(function () {
