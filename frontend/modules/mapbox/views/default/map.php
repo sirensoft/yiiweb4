@@ -153,7 +153,7 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
             radars = JSON.parse(radars);
             latlng_topright = JSON.parse(latlng_topright);
             latlng_bottomleft = JSON.parse(latlng_bottomleft);
-            var traffic = L.tileLayer('https://1.traffic.maps.cit.api.here.com/.../{y}/256/png8...',).addTo(map);
+           
 
             var rain = L.layerGroup().addTo(map);
             $.each(radars, function (key, value) {
