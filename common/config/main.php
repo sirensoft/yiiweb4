@@ -62,5 +62,8 @@ return [
         'mapbox' => [
             'class' => 'frontend\modules\mapbox\Mapbox',
         ],
+        'import' => [
+            'class' => 'frontend\modules\import\Import',
+        ],
     ]
 ];
