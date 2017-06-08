@@ -32,9 +32,13 @@ class ExcelController extends Controller {
                 $excel = new Excel($filename);
                 $array = $excel->toArray();
                 foreach ($array as $value) {
+                    
                     $drug = new Drugdata();
                     $drug->attributes = $value;
+                    $drug->daterecord = date('Y-m-d', \PHPExcel_Shared_Date::ExcelToPHP($value['daterecord']));
+                    $drug->ptdob = date('Y-m-d', \PHPExcel_Shared_Date::ExcelToPHP($value['ptdob']));
                     $drug->save(FALSE);
+                    
                 }
                 $log = new LogImport();
                 $log->file_name = $mUpload->dataFile->name;

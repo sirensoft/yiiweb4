@@ -165,6 +165,11 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 L.imageOverlay(imageUrl, imageBounds).addTo(rain).setOpacity(0.95);
             });
 
+            var wms1 = L.tileLayer.wms("http://sedac.ciesin.columbia.edu/geoserver/wms",{
+                format: 'image/png',
+                transparent: true,
+                layers: 'gpw-v3:gpw-v3-population-density_2000'
+            });
 
             //wms
 
@@ -177,7 +182,8 @@ $tambon = $this->render('./tambon_plk_utf8.geojson');
                 "precipitation": precipitation,
                 "longdo": longdo,
                 "traffic": traffic,
-                "ฝน": rain
+                "ฝน": rain,
+                "wms1":wms1
 
 
             };
