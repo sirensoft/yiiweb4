@@ -42,8 +42,8 @@ class Patient extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'cid' => 'Cid',
-            'name' => 'Name',
+            'cid' => 'เลขบัตร',
+            'name' => 'ชื่อ',
             'lname' => 'Lname',
             'birth' => 'Birth',
         ];
