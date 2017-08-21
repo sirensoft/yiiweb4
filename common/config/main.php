@@ -13,6 +13,9 @@ return [
         
     ],
     'modules' => [
+        'pct' => [
+            'class' => 'frontend\modules\pct\Pct',
+        ],
         'rbac' => [
             'class' => 'johnitvn\rbacplus\Module',
             'userModelClassName' => null,
