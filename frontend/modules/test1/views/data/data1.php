@@ -30,7 +30,6 @@ echo $array2['office']['y2560'];
 
 echo $array2['office']['y2546'][1];
 
-
 echo '<hr>';
 $array3 = [];
 $array3[] = [
@@ -43,11 +42,26 @@ $array3[] = [
     'lname'=>'bbb'
 ];
 
-
 echo '<pre>';
 print_r($array3);
 echo '</pre>';
 echo json_encode($array3);
+echo '<hr>';
+
+echo '<ul>';
+foreach ($array3 as $value) {
+    echo '<li>';
+    echo $value['name'].' '.$value['lname'];
+    echo '</li>';
+}
+echo '</ul>';
+
+
+
+
+
+
+
 
 
 
