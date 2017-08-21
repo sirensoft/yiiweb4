@@ -65,5 +65,8 @@ return [
         'import' => [
             'class' => 'frontend\modules\import\Import',
         ],
+        'test1' => [
+            'class' => 'frontend\modules\test1\Test1',
+        ],
     ]
 ];
