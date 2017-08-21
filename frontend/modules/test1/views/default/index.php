@@ -1,7 +1,7 @@
 <?php
 $this->title = 'app ของฉัน';
 use yii\helpers\Html;
- 
+
 ?>
 
 <p><a href="index.php?r=test1/data/data1">ไปลิงค์ 1</a>
