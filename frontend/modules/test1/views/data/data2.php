@@ -32,6 +32,18 @@
         $model->name = 'qqqqqqqq';
         $model->save();
     }
+    
+    use kartik\grid\GridView;
+    use yii\data\ActiveDataProvider;
+    
+    $model = Patient::find();
+    $dataProvider = new ActiveDataProvider([
+        'query'=>$model
+    ]);
+    echo GridView::widget([
+        'dataProvider'=>$dataProvider,
+        'panel'=>['before'=>'ข้อมูลผู้ป่วย']
+    ]);
 
 
 
