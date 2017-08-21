@@ -1,12 +1,9 @@
-<div class="test1-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
-</div>
+<?php
+$this->title = 'app ของฉัน';
+use yii\helpers\Html;
+ 
+?>
+
+<p><a href="index.php?r=test1/data/data1">ไปลิงค์ 1</a>
+<p><?=Html::a('ไปลิงค์ 1',['/test1/data/data1'])?>
+<p><?=Html::a('ไปลิงค์ 2',['/test1/data/data2'],['class'=>'btn btn-success btn-lg','target'=>'_blank'])?>
