@@ -12,4 +12,6 @@ $array1 = ['a','b','c',10,'ก'];
 echo $array1[2];  // c
 $array1[5]='xxxx';
 echo '<br>';
+echo '<pre>';
 print_r($array1); 
+echo '</pre>';
