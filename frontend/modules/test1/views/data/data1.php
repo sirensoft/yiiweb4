@@ -47,6 +47,7 @@ $array3[] = [
 echo '<pre>';
 print_r($array3);
 echo '</pre>';
+echo json_encode($array3);
 
 
 
