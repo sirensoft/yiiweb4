@@ -21,7 +21,7 @@ class DefaultController extends Controller
     
     public function actionReport1($date1=null,$date2=null){
         
-        $sql = "select cid,pname,fname,lname,birthdate from person";
+        $sql = "select cid as 'เลขบัตร',pname,fname,lname,birthdate from person";
         if(!empty($date1) && !empty($date2)){
             $sql.= " where birthdate between '$date1' and '$date2'";
         }else{
