@@ -39,4 +39,8 @@ class DefaultController extends Controller
             'sql'=>$sql
         ]);
     }
+    
+    public function actionReport2(){
+        return $this->render('report2');
+    }
 }
