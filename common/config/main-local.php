@@ -10,6 +10,14 @@ return [
             'charset' => 'utf8',
         ],
         
+         'db_hos' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=h07477;port=3306',
+            'username' => 'root',
+            'password' => '112233',
+            'charset' => 'utf8',
+        ],
+        
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => TRUE,

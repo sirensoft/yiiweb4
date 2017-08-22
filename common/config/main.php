@@ -13,6 +13,9 @@ return [
         
     ],
     'modules' => [
+         'report' => [
+            'class' => 'frontend\modules\report\Report',
+        ],
         'pct' => [
             'class' => 'frontend\modules\pct\Pct',
         ],
