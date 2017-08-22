@@ -1,6 +1,8 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\widgets\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\modules\pct\models\Patient */
@@ -17,23 +19,29 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'birth')->textInput() ?>
+    <?=
+    $form->field($model, 'birth')->widget(DatePicker::classname(), [
+        'options' => ['placeholder' => 'วดป.เกิด...'],
+        'pickerButton' => [
+            'icon' => 'calendar',
+        ],
+        'language' => 'th',
+        'pluginOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-mm-dd',
+            'todayHighlight' => true
+        ]
+    ])
+    ?>
 
-    <?= $form->field($model, 'created_by')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
 
-    <?= $form->field($model, 'updated_by')->textInput(['maxlength' => true]) ?>
+        <?php if (!Yii::$app->request->isAjax) { ?>
+        <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
+    <?php } ?>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+<?php ActiveForm::end(); ?>
 
-  
-	<?php if (!Yii::$app->request->isAjax){ ?>
-	  	<div class="form-group">
-	        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-	    </div>
-	<?php } ?>
-
-    <?php ActiveForm::end(); ?>
-    
 </div>
