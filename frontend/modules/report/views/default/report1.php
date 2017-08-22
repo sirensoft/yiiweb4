@@ -47,7 +47,8 @@ $form = ActiveForm::begin([
         ?>
     </div>
     <div class="col-md-3">
-        <?= Html::submitButton('ตกลง', ['class' => 'btn btn-danger', 'style' => 'margin-top:20px']) ?>
+        <br>
+        <?= Html::submitButton('ตกลง', ['class' => 'btn btn-danger']) ?>
     </div>
 </div>
 <?php
