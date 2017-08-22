@@ -16,7 +16,8 @@ return [
         'format'=>'Html',
         'value'=>function($model){
             return Html::a('<i class="glyphicon glyphicon-lock"></i>',['/pct/visit/index','id'=>$model->id],['class'=>'btn btn-default']);
-        }
+        },
+        
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
