@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 return [
     [
@@ -10,7 +11,13 @@ return [
         'class' => 'kartik\grid\SerialColumn',
         'width' => '30px',
     ],
-    
+    [
+        //'attribute'=>'id',
+        'format'=>'Html',
+        'value'=>function($model){
+            return Html::a('<i class="glyphicon glyphicon-lock"></i>',['/pct/visit/index','id'=>$model->id],['class'=>'btn btn-default']);
+        }
+    ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'cid',
