@@ -3,6 +3,9 @@
 namespace frontend\modules\pct\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "patient".
@@ -12,40 +15,58 @@ use Yii;
  * @property string $name
  * @property string $lname
  * @property string $birth
+ * @property string $created_by
+ * @property string $created_at
+ * @property string $updated_by
+ * @property string $updated_at
  */
-class Patient extends \yii\db\ActiveRecord
-{
+class Patient extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'patient';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['birth'], 'safe'],
+            [['cid','name','lname'],'required'],
+            [['cid'],'unique'],
+            [['birth', 'created_at', 'updated_at'], 'safe'],
             [['cid'], 'string', 'max' => 13],
-            [['name', 'lname'], 'string', 'max' => 255],
+            [['name', 'lname', 'created_by', 'updated_by'], 'string', 'max' => 255],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
-            'cid' => 'เลขบัตร',
+            'cid' => 'เลข13หลัก',
             'name' => 'ชื่อ',
-            'lname' => 'Lname',
-            'birth' => 'Birth',
+            'lname' => 'นามสกุล',
+            'birth' => 'วดป.เกิด',
+            'created_by' => 'Created By',
+            'created_at' => 'Created At',
+            'updated_by' => 'Updated By',
+            'updated_at' => 'Updated At',
         ];
     }
+
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'value'=>new Expression("NOW()")
+            ],
+            ['class' => BlameableBehavior::className()]
+        ];
+    }
+
 }

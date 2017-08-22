@@ -19,7 +19,7 @@ class PatientSearch extends Patient
     {
         return [
             [['id'], 'integer'],
-            [['cid', 'name', 'lname', 'birth'], 'safe'],
+            [['cid', 'name', 'lname', 'birth', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'safe'],
         ];
     }
 
@@ -43,8 +43,6 @@ class PatientSearch extends Patient
     {
         $query = Patient::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -57,15 +55,18 @@ class PatientSearch extends Patient
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'birth' => $this->birth,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'cid', $this->cid])
             ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'lname', $this->lname]);
+            ->andFilterWhere(['like', 'lname', $this->lname])
+            ->andFilterWhere(['like', 'created_by', $this->created_by])
+            ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
 
         return $dataProvider;
     }
