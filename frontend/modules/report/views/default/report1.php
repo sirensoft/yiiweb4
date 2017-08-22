@@ -4,21 +4,50 @@ use kartik\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use kartik\widgets\DatePicker;
 
 $this->title = 'รายงาน 1';
-$this->params['breadcrumbs'][] = ['label'=>'รวมรายงาน','url'=>['index']];
+$this->params['breadcrumbs'][] = ['label' => 'รวมรายงาน', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'รายงาน 1';
 ?>
-<?=$sql?>
+<?= $sql ?>
 <?php
 $form = ActiveForm::begin([
-    'method'=>'get',
-    'action'=>Url::to(['report1'])
-]);
+            'method' => 'get',
+            'action' => Url::to(['report1'])
+        ]);
 ?>
-เกิดระหว่าง:<?=Html::textInput('date1')?> 
-ถึง:<?=Html::textInput('date2')?>
-<?=Html::submitButton('ตกลง')?>
+<div class="row">
+    <div class="col-md-3">
+        เกิดระหว่าง:
+        <?php
+        echo DatePicker::widget([
+            'name' => 'date1',
+            'type' => DatePicker::TYPE_INPUT,
+            'value' => $date1,
+            'pluginOptions' => [
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]);
+        ?>
+    </div>
+    <div class="col-md-3">
+        ถึง:
+        <?php
+        echo DatePicker::widget([
+            'name' => 'date2',
+            'type' => DatePicker::TYPE_INPUT,
+            'value' => $date2,
+            'pluginOptions' => [
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]);
+        ?>
+    </div>
+    <div class="col-md-3">
+        <?= Html::submitButton('ตกลง') ?>
+    </div>
+</div>
 <?php
 ActiveForm::end();
 ?>
