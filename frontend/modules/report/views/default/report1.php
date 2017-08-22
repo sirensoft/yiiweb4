@@ -10,14 +10,14 @@ $this->title = 'รายงาน 1';
 $this->params['breadcrumbs'][] = ['label' => 'รวมรายงาน', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'รายงาน 1';
 ?>
-<?= $sql ?>
+
 <?php
 $form = ActiveForm::begin([
             'method' => 'get',
             'action' => Url::to(['report1'])
         ]);
 ?>
-<div class="row">
+<div class="row" style="margin-bottom: 5px">
     <div class="col-md-3">
         เกิดระหว่าง:
         <?php
@@ -45,7 +45,7 @@ $form = ActiveForm::begin([
         ?>
     </div>
     <div class="col-md-3">
-        <?= Html::submitButton('ตกลง') ?>
+        <?= Html::submitButton('ตกลง',['class'=>'btn btn-danger','style'=>'margin-top:20px']) ?>
     </div>
 </div>
 <?php
