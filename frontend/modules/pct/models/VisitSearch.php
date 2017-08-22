@@ -41,7 +41,7 @@ class VisitSearch extends Visit
      */
     public function search($params)
     {
-        $query = Visit::find();
+        $query = Visit::find();       
 
         // add conditions that should always apply here
 
@@ -69,6 +69,7 @@ class VisitSearch extends Visit
             ->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['like', 'created_by', $this->created_by])
             ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
+           
 
         return $dataProvider;
     }
