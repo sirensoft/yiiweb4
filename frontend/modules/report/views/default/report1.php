@@ -26,7 +26,8 @@ $form = ActiveForm::begin([
             'type' => DatePicker::TYPE_INPUT,
             'value' => $date1,
             'pluginOptions' => [
-                'format' => 'yyyy-mm-dd'
+                'format' => 'yyyy-mm-dd',
+                'autoclose' => true,
             ]
         ]);
         ?>
@@ -39,13 +40,14 @@ $form = ActiveForm::begin([
             'type' => DatePicker::TYPE_INPUT,
             'value' => $date2,
             'pluginOptions' => [
-                'format' => 'yyyy-mm-dd'
+                'format' => 'yyyy-mm-dd',
+                'autoclose' => true,
             ]
         ]);
         ?>
     </div>
     <div class="col-md-3">
-        <?= Html::submitButton('ตกลง',['class'=>'btn btn-danger','style'=>'margin-top:20px']) ?>
+        <?= Html::submitButton('ตกลง', ['class' => 'btn btn-danger', 'style' => 'margin-top:20px']) ?>
     </div>
 </div>
 <?php
