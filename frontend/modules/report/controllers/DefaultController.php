@@ -66,7 +66,14 @@ class DefaultController extends Controller
     }
     
     public function actionReport3(){
-        return $this->render('report3');
+        $sql = " select * from data_atb where byear = '2560'";
+        
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        
+        
+        return $this->render('report3',[
+            'raw'=>$raw
+        ]);
     }
     
 }
