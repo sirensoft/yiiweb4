@@ -13,12 +13,25 @@ HighchartsAsset::register($this)->withScripts([
 <?php
 $json = [];
 foreach ($raw as $value) {
-    $json[]=[
-        'name'=>$value['amphur'],
-        'data'=>[$value['m01'],$value['m02']]
+    $json[] = [
+        'name' => $value['amphur'],
+        'data' => [
+            $value['m01']*1,
+            $value['m02']*1,
+            $value['m03']*1,
+            $value['m04']*1,
+            $value['m05']*1,
+            $value['m06']*1,
+            $value['m07']*1,
+            $value['m08']*1,
+            $value['m09']*1,
+            $value['m10']*1,
+            $value['m11']*1,
+            $value['m12']*1,
+        ]
     ];
 }
-echo $json = json_encode($json);
+$json = json_encode($json);
 ?>
 
 <?php
@@ -32,9 +45,10 @@ Highcharts.chart('container', {
     subtitle: {
         text: 'จากฐานข้อมูล 43 แฟ้ม'
     },
-    xAxis: {
+     xAxis: {
         categories: ['มค.', 'กพ.', 'มีค.', 'เมย.', 'พค.', 'มิย.', 'กค.', 'สค.', 'กย.', 'ตค.', 'พย.', 'ธค.']
     },
+   
 
     yAxis: {
         title: {
