@@ -17,6 +17,7 @@ class AppAsset extends AssetBundle {
     ];
     public $js = [
         'js/yii_overrides.js',
+        
     ];
     public $depends = [
         'yii\web\YiiAsset',
