@@ -16,7 +16,7 @@
 <div id='map'></div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoidGVobm5uIiwiYSI6ImNpZzF4bHV4NDE0dTZ1M200YWxweHR0ZzcifQ.lpRRelYpT0ucv1NN08KUWQ';
-var map = L.mapbox.map('map').setView([14.003510, 99.55066], 9);
+var map = L.mapbox.map('map').setView([14.003510, 99.55066], 16);
 
  //base-map
     var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
@@ -35,8 +35,8 @@ var map = L.mapbox.map('map').setView([14.003510, 99.55066], 9);
 
     var baseMap = {
         'OSM-ถนน': osmStreet,
-        'Google-ถนน': googleStreet.addTo(map),
-        'Google-ผสม': googleHybrid,
+        'Google-ถนน': googleStreet,
+        'Google-ผสม': googleHybrid.addTo(map),
         'Google-ดาวเทียม': googleSat,
         //'ไม่แสดง': {}
 
@@ -50,13 +50,16 @@ var map = L.mapbox.map('map').setView([14.003510, 99.55066], 9);
         var latlng = marker.getLatLng();     
         var lat = latlng.lat;
         var lng = latlng.lng;
-       marker.bindPopup('<b>'+lat+','+lng+'</b>');
+       marker.bindPopup('<b>พิกัด: '+lat+','+lng+'</b>');
        marker.openPopup();
+       map.panTo(latlng);
     });
     
+    var hosLayer=L.mapbox.featureLayer(<?=$json_hos?>);
     
-    
-    L.control.layers(baseMap,{}).addTo(map);
+    L.control.layers(baseMap,{
+        'หน่วยบริการ':hosLayer.addTo(map)
+    }).addTo(map);
     
     
     

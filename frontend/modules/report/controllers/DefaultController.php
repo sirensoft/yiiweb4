@@ -4,6 +4,7 @@ namespace frontend\modules\report\controllers;
 
 use yii\web\Controller;
 use yii\data\ArrayDataProvider;
+use yii\helpers\Json;
 
 /**
  * Default controller for the `report` module
@@ -81,7 +82,32 @@ class DefaultController extends Controller
     }
     
     public function actionMap(){
-        return $this->renderPartial('map');
+        $sql = "select * from chospital_gis where areacode like '71%'";
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        
+        $json_hos = [];
+        
+        foreach ($raw as $val) {
+            $json_hos[]=[
+                'type'=>'Feature',
+                'properties'=>[
+                    'title'=>$val['hosname'],
+                    'marker-symbol'=>'commercial',
+                    'marker-color'=>'#0000FF',
+                    'marker-size'=>'small'
+                ],
+                'geometry'=>[
+                    'type'=>'Point',
+                    'coordinates'=>[$val['lon']*1,$val['lat']*1]
+                ]
+            ];
+        }
+        
+       $json_hos = Json::encode($json_hos);
+        
+        return $this->renderPartial('map',[
+            'json_hos'=>$json_hos
+        ]);
     }
     
 }
