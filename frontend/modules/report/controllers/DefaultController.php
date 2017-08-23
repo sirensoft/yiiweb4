@@ -80,4 +80,8 @@ class DefaultController extends Controller
         return $this->render('report4');
     }
     
+    public function actionMap(){
+        return $this->renderPartial('map');
+    }
+    
 }
