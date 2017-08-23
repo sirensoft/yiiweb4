@@ -53,6 +53,17 @@ $form = ActiveForm::begin([
 
     <div class="col-md-3">
         ตำบล
+        <?php
+        echo DepDrop::widget([
+            'name' => 'tambon',
+            'options' => ['id' => 'tambon'],
+            'pluginOptions' => [
+                'depends' => ['amphur'], 
+                'placeholder' => 'เลือกตำบล',
+                'url' => Url::to(['/report/json/gettmb'])
+            ],
+        ]);
+        ?>
 
     </div>
     <div class="col-md-2">
