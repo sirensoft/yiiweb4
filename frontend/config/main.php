@@ -36,19 +36,19 @@ return [
         ],
         /*
         'view' => [
-          'theme' => [
-          'pathMap' => [
-          '@frontend/views' => '@frontend/themes/adminlte'
-          ],
-          ],
-          ],*/
-         /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+            'theme' => [
+                'pathMap' => [
+                    '@frontend/views' => '@frontend/themes/adminlte'
+                ],
             ],
         ],*/
+    /*
+      'urlManager' => [
+      'enablePrettyUrl' => true,
+      'showScriptName' => false,
+      'rules' => [
+      ],
+      ], */
     ],
     'params' => $params,
 ];
