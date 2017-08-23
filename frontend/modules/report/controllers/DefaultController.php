@@ -47,7 +47,7 @@ class DefaultController extends Controller
     }
     
     public function actionReport2(){
-        return $this->render('report2');
+      return $this->render('report2');
     }
     
 }
