@@ -57,6 +57,7 @@ ActiveForm::end();
 
 <?php
 echo GridView::widget([
+    'responsiveWrap'=>false,
     'formatter' => [
         'class' => 'yii\i18n\Formatter',
         'nullDisplay' => '-'

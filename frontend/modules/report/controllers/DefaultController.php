@@ -46,7 +46,8 @@ class DefaultController extends Controller
         ]);
     }
     
-    public function actionDepdrop(){
-        return $this->render('depdrop');
+    public function actionReport2(){
+        return $this->render('report2');
     }
+    
 }

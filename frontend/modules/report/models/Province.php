@@ -40,7 +40,7 @@ class Province extends \yii\db\ActiveRecord
     {
         return [
             'changwatcode' => 'Changwatcode',
-            'changwatname' => 'จังหวัด',
+            'changwatname' => 'Changwatname',
             'zonecode' => 'Zonecode',
         ];
     }
