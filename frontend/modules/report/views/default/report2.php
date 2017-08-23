@@ -7,6 +7,8 @@ use kartik\widgets\Select2;
 use frontend\modules\report\models\Province;
 use yii\helpers\ArrayHelper;
 use kartik\widgets\DepDrop;
+use kartik\grid\GridView;
+use kartik\detail\DetailView;
 
 $this->title = 'รายงาน 2';
 $this->params['breadcrumbs'][] = ['label' => 'รวมรายงาน', 'url' => ['index']];
@@ -74,4 +76,12 @@ $form = ActiveForm::begin([
         <?php
         ActiveForm::end();
         ?>
+
+<div>
+    <?php
+        echo GridView::widget([
+            'dataProvider'=>$dataProvider
+        ]);
+    ?>
+</div>
 

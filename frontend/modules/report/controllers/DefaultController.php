@@ -46,8 +46,23 @@ class DefaultController extends Controller
         ]);
     }
     
-    public function actionReport2(){
-      return $this->render('report2');
+    public function actionReport2($province=NULL,$amphur=NULL,$tambon=NULL){
+      
+        $sql = "select * from c_tambon";
+        if(!empty($tambon)){
+            $sql.=" where tamboncodefull = $tambon";
+        }else{
+            $sql.=" limit 0";
+        }
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        
+        $dataProvider = new ArrayDataProvider([
+            'allModels'=>$raw
+        ]);
+        
+        return $this->render('report2',[
+            'dataProvider'=>$dataProvider
+        ]);
     }
     
 }
