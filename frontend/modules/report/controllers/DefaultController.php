@@ -30,13 +30,19 @@ class DefaultController extends Controller
         
         $raw = \Yii::$app->db_hos->createCommand($sql)->queryAll();
         $dataProvider = new ArrayDataProvider([
-            'allModels'=>$raw
+            'allModels'=>$raw,
+            'pagination'=>[
+                'pageSize'=>35
+            ],
+            'sort'=>[
+                'attributes'=>['เลขบัตร','pname']
+            ]
         ]);
         return $this->render('report1',[
             'dataProvider'=>$dataProvider,
             'date1'=>$date1,
             'date2'=>$date2,
-            'sql'=>$sql
+            
         ]);
     }
     
