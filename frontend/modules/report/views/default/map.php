@@ -41,6 +41,26 @@ var map = L.mapbox.map('map').setView([14.003510, 99.55066], 9);
         //'ไม่แสดง': {}
 
     };
+    
+    var marker = L.marker([14.003510, 99.55066],{
+        'draggable':true        
+    }).addTo(map);
+    
+    marker.on('dragend',function(e){
+        var latlng = marker.getLatLng();     
+        var lat = latlng.lat;
+        var lng = latlng.lng;
+       marker.bindPopup('<b>'+lat+','+lng+'</b>');
+       marker.openPopup();
+    });
+    
+    
+    
+    L.control.layers(baseMap,{}).addTo(map);
+    
+    
+    
+    
 
    
 </script>
