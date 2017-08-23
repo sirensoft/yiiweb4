@@ -7,8 +7,8 @@ HighchartsAsset::register($this)->withScripts([
     'modules/solid-gauge'
 ]);
 ?>
-<div id="cockpit">    
-</div>
+<div id="cockpit1"></div>
+<div id="cockpit2"></div>
 
 <?php
 $js = <<<JS
@@ -66,8 +66,8 @@ var gaugeOptions = {
     }
 };
 
-// The speed gauge
-Highcharts.chart('cockpit', Highcharts.merge(gaugeOptions, {
+// cockpit1
+Highcharts.chart('cockpit1', Highcharts.merge(gaugeOptions, {
     yAxis: {
         min: 0,
         max: 100,
@@ -83,6 +83,36 @@ Highcharts.chart('cockpit', Highcharts.merge(gaugeOptions, {
     series: [{
         name: 'Speed',
         data: [70],
+        dataLabels: {
+            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                   '<span style="font-size:16px;color:blue">อ.เมือง</span></div>'
+        },
+        tooltip: {
+            valueSuffix: 'ร้อยละ'
+        }
+    }]
+
+}));
+        
+//cockpit2
+// The speed gauge
+Highcharts.chart('cockpit2', Highcharts.merge(gaugeOptions, {
+    yAxis: {
+        min: 0,
+        max: 100,
+        title: {
+            text: 'ร้อยละ'
+        }
+    },
+
+    credits: {
+        enabled: false
+    },
+
+    series: [{
+        name: 'Speed',
+        data: [50],
         dataLabels: {
             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
