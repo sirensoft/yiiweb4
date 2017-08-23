@@ -6,7 +6,10 @@ HighchartsAsset::register($this)->withScripts([
     'highcharts-more',
     'modules/solid-gauge'
 ]);
-$this->registerJsFile('@web/js/cockpit.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+/*
+$this->registerJsFile('@web/js/cockpit.js', [
+    'depends' => [\yii\web\JqueryAsset::className()]
+]);*/
 ?>
 
 <div id="container"></div>
@@ -116,11 +119,7 @@ Highcharts.chart('pie', {
         }]
     }]
 });
- //cockpit
- gen_cockpit('cockpit1','ใช้ยา ATB ใน URI',85.9);
- gen_cockpit('cockpit2','ใช้ยา ATB ใน AD',87.9);
-        
-        
+ 
         
 JS;
 

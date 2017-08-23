@@ -76,4 +76,8 @@ class DefaultController extends Controller
         ]);
     }
     
+    public function actionReport4(){
+        return $this->render('report4');
+    }
+    
 }
