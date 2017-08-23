@@ -33,4 +33,28 @@ class JsonController extends Controller
             return Json::encode(['output' => $out, 'selected' => '']);
         }
     }
+    
+    public function actionTambon(){
+        //\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $sql = "select * from gis_tambon";
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        $json =[];
+        
+        foreach ($raw as $val) {
+            $json[]=[
+                'type'=>'Feature',
+                'properties'=>[
+                    'fill'=>'lime'
+                ],
+                
+                'geometry'=>[
+                    'type'=> 'MultiPolygon',
+                    'coordinates'=> json_decode($val['COORDINATES'])
+                ]
+            ];
+        }
+        
+        return json_encode($json);
+        
+    }
 }

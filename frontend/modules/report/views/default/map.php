@@ -12,7 +12,10 @@
 </style>
 </head>
 <body>
-
+<?php
+use yii\helpers\Url;
+$route = Url::to(['/report/json/tambon']);
+?>
 <div id='map'></div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoidGVobm5uIiwiYSI6ImNpZzF4bHV4NDE0dTZ1M200YWxweHR0ZzcifQ.lpRRelYpT0ucv1NN08KUWQ';
@@ -56,6 +59,8 @@ var map = L.mapbox.map('map').setView([14.003510, 99.55066], 16);
     });
     
     var hosLayer=L.mapbox.featureLayer(<?=$json_hos?>);
+    
+    L.mapbox.featureLayer().loadURL('<?=$route?>').addTo(map);
     
     L.control.layers(baseMap,{
         'หน่วยบริการ':hosLayer.addTo(map)
