@@ -35,7 +35,7 @@ class JsonController extends Controller
     }
     
     public function actionTambon(){
-        //\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        
         $sql = "select * from gis_tambon";
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();
         $json =[];
