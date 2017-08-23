@@ -8,7 +8,7 @@ use frontend\modules\report\models\Province;
 use yii\helpers\ArrayHelper;
 use kartik\widgets\DepDrop;
 use kartik\grid\GridView;
-use kartik\detail\DetailView;
+use yii\widgets\DetailView;
 
 $this->title = 'รายงาน 2';
 $this->params['breadcrumbs'][] = ['label' => 'รวมรายงาน', 'url' => ['index']];
@@ -60,7 +60,7 @@ $form = ActiveForm::begin([
             'name' => 'tambon',
             'options' => ['id' => 'tambon'],
             'pluginOptions' => [
-                'depends' => ['amphur'], 
+                'depends' => ['amphur'],
                 'placeholder' => 'เลือกตำบล',
                 'url' => Url::to(['/report/json/gettmb'])
             ],
@@ -70,18 +70,25 @@ $form = ActiveForm::begin([
     </div>
     <div class="col-md-2">
         <br>
-<?= Html::submitButton('ตกลง', ['class' => 'btn btn-danger']) ?>
+        <?= Html::submitButton('ตกลง', ['class' => 'btn btn-danger']) ?>
     </div>
 </div>
-        <?php
-        ActiveForm::end();
-        ?>
+<?php
+ActiveForm::end();
+?>
 
 <div>
     <?php
-        echo GridView::widget([
-            'dataProvider'=>$dataProvider
-        ]);
+    echo GridView::widget([
+        'dataProvider' => $dataProvider
+    ]);
+    ?>
+
+    <?php    
+    $model = $dataProvider->getModels();
+    echo DetailView::widget([
+        'model' => $model[0],
+    ]);
     ?>
 </div>
 
