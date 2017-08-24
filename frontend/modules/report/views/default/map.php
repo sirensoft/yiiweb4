@@ -75,9 +75,9 @@ $route = Url::to(['/report/json/tambon']);
                 var div = L.DomUtil.create('div', 'info legend');
                 var labels = ['<b>คำอธิบาย</b>'];
 
-                labels.push('<i style="background:lime"></i>0 - 100 คน:ตร.กม.');
-                labels.push('<i style="background:orangered"></i>101 - 499 คน:ตร.กม.');
-                labels.push('<i style="background:red"></i>มากว่าเท่ากับ 500 คน:ตร.กม. ');
+                labels.push('<i style="background:lime"></i>คะแนน 80-100');
+                labels.push('<i style="background:yellow"></i>คะแนน 60-80');
+                labels.push('<i style="background:red"></i>คะแนน <60');
                 labels.push('');
                 labels.push('<u>แหล่งข้อมูล</u>');
                 labels.push('จากการสำรวจของหน่วยบริการ');
