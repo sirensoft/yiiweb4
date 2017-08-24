@@ -110,4 +110,8 @@ class DefaultController extends Controller
         ]);
     }
     
+    public function actionGate(){
+        return $this->render('gate');
+    }
+    
 }
