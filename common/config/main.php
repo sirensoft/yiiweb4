@@ -74,5 +74,8 @@ return [
         'test1' => [
             'class' => 'frontend\modules\test1\Test1',
         ],
+        'sqlquery' => [
+            'class' => 'modules\sqlquery\SqlQuery',
+        ],
     ]
 ];
