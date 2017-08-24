@@ -60,10 +60,11 @@ var map = L.mapbox.map('map').setView([14.003510, 99.55066], 16);
     
     var hosLayer=L.mapbox.featureLayer(<?=$json_hos?>);
     
-    L.mapbox.featureLayer().loadURL('<?=$route?>').addTo(map);
+    var tmbLayer= L.mapbox.featureLayer().loadURL('<?=$route?>');
     
     L.control.layers(baseMap,{
-        'หน่วยบริการ':hosLayer.addTo(map)
+        'หน่วยบริการ':hosLayer.addTo(map),
+        'ขอบเขตตำบล':tmbLayer.addTo(map)
     }).addTo(map);
     
     

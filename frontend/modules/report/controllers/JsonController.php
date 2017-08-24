@@ -34,6 +34,13 @@ class JsonController extends Controller
         }
     }
     
+    // ไฟล์ JsonController
+    protected function setColor($n){
+        if(empty($n)) return 'white';
+        if($n<60) return 'red';
+        if($n<80) return 'yellow';
+        if($n>=80) return 'lime';
+    }
     public function actionTambon(){        
         $sql = "select * from gis_tambon";
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();
@@ -42,7 +49,9 @@ class JsonController extends Controller
             $json[]=[
                 'type'=>'Feature',
                 'properties'=>[
-                    'fill'=>'lime'
+                    'fill'=>  $this->setColor($val['NOTE1']), // สีพื้นที่
+                    'title'=>$val['TAM_NAMT'],
+                    
                 ],                
                 'geometry'=>[
                     'type'=> 'MultiPolygon',
@@ -51,5 +60,5 @@ class JsonController extends Controller
             ];
         }        
         return json_encode($json);        
-    }
-}
+    }// จบ Action Tambon
+}//จบ class
