@@ -91,6 +91,10 @@ $route = Url::to(['/report/json/tambon']);
             var hosLayer = L.mapbox.featureLayer(<?= $json_hos ?>);
 
             var tmbLayer = L.mapbox.featureLayer().loadURL('<?= $route ?>');
+            tmbLayer.on('ready',function(e){
+                var bounds = tmbLayer.getBounds();
+                map.fitBounds(bounds);
+            });
 
             L.control.layers(baseMap, {
                 'หน่วยบริการ': hosLayer.addTo(map),
