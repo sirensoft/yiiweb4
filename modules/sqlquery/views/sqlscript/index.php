@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => 'ประมวลผล',
                         'format' => 'raw',
                         'value' => function ($model) {
-                            $route_run = \yii\helpers\Url::to(['runquery/index']);
+                            $route_run = \yii\helpers\Url::to(['runquery/index',]);
                             $html = "<form method=\"post\" action='$route_run'>
                                 <input type='hidden' name ='script_name' value=\"$model->topic\">
                                 <input type='hidden' name='sql_code' value=\"$model->sql_script\">

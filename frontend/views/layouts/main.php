@@ -40,7 +40,7 @@ AppAsset::register($this);
                 [
                     'label' => 'Dropdown',
                     'items' => [
-                        ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
+                        ['label' => 'Level 1 - Dropdown A', 'url' => ['/sqlquery/runquery/result','id'=>'7']],
                         '<li class="divider"></li>',
                         '<li class="dropdown-header">Dropdown Header</li>',
                         ['label' => 'Level 2 - Dropdown B','url' => '#'],
@@ -56,7 +56,7 @@ AppAsset::register($this);
                 $menuItems[] = [
                     'label' => '<span class="glyphicon glyphicon-user"></span> ' . \Yii::$app->user->identity->username,
                     'items' => [
-                        ['label' => 'เมนู 1', 'url' => '#'],
+                        ['label' => 'เมนู 1', 'url' => ['/sqlquery/runquery/index','id'=>'7']],
                         '<li class="divider"></li>',
                         '<li class="dropdown-header">menu header</li>',
                         ['label' => '<span class="glyphicon glyphicon-off"></span> Logout','url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']],

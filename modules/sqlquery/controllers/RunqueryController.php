@@ -155,8 +155,16 @@ class RunqueryController extends Controller {
         ]);
     }
 
-    public function actionResult() {
-        
+    public function actionResult($id) {
+       $model= Sqlscript::findOne($id);
+        $sql = $model->sql_script;
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            'allModels'=>$raw
+        ]);
+        return $this->render('result',[
+            'dataProvider'=>$dataProvider
+        ]);
     }
 
 }

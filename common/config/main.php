@@ -77,5 +77,6 @@ return [
         'sqlquery' => [
             'class' => 'modules\sqlquery\SqlQuery',
         ],
+        
     ]
 ];
