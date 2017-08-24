@@ -49,9 +49,11 @@ class JsonController extends Controller
             $json[]=[
                 'type'=>'Feature',
                 'properties'=>[
-                    'fill'=>  $this->setColor($val['NOTE1']), // สีพื้นที่
+                    'fill'=>  $this->setColor($val['NOTE1']), 
                     'title'=>$val['TAM_NAMT'],
-                    
+                    'description'=>$val['NOTE1'],
+                    'fill-opacity'=>0.3,
+                    'stroke-width'=>1
                 ],                
                 'geometry'=>[
                     'type'=> 'MultiPolygon',
