@@ -5,6 +5,7 @@ namespace frontend\modules\report\controllers;
 use yii\web\Controller;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Json;
+use common\components\MyHelper;
 
 /**
  * Default controller for the `report` module
@@ -112,6 +113,12 @@ class DefaultController extends Controller
     
     public function actionGate(){
         return $this->render('gate');
+    }
+    
+    public function actionLine($msg){
+        if(!empty($msg)){
+           echo MyHelper::sendLineNotify($msg);
+        }
     }
     
 }

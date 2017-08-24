@@ -6,7 +6,7 @@ class MyHelper extends Component{
       
     public static  function sendLineNotify($message = NULL) {
         $LINE_API = 'https://notify-api.line.me/api/notify';
-        $LINE_TOKEN = '';
+        $LINE_TOKEN = 'Jak3I3kvwdwj1RO480rmLIs0dme7SzM9VY9h8ACMh1Y';
         $queryData = ['message' => $message];
         $queryData = http_build_query($queryData, '', '&');
         $headerOptions = [
